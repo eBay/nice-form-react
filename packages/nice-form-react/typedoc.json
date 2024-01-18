@@ -1,0 +1,11 @@
+{
+  "entryPoints": [
+    "src/index.ts",
+    "src/adapters/antdAdapter.tsx",
+    "src/adapters/formikAdapter.tsx",
+    "src/adapters/formikMuiAdapter.tsx"
+  ],
+  "out": "docs/api",
+  "excludeInternal": false,
+  "readme": "none"
+}
