@@ -1,3 +1,5 @@
+**NOTE: This project is still under development, not ready yet.**
+
 # nice-form-react
 
 While there're already some form libraries/frameworks focus on state management or reuseful components, NiceForm mainly focus on form layout, conditionally show/hide form fields, switch view/edit modes, etc, in a meta based approach.
