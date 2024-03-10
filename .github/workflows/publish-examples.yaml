@@ -43,9 +43,12 @@ jobs:
           pnpm build
           cd ../../
           cd packages/examples-antd
-          pnpm i
           pnpm build
+          # cd ../../packages/examples-formik
+          # pnpm build
           cd ../../
+          cp ./docs/index.html ./gh-pages/index.html
+
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
