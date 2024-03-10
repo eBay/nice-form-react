@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Publish Examples
+name: publish-examples
 
 # Controls when the workflow will run
 on:
@@ -37,7 +37,7 @@ jobs:
       # Build examples
       - name: Build examples
         run: |
-          cd packages/example-antd
+          cd packages/examples-antd
           pnpm build
           cd ../../
 
