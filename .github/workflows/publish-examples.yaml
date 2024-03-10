@@ -25,7 +25,7 @@ jobs:
 
       # Install dependencies
       - name: Install dependencies
-      - run: pnpm i
+        run: pnpm i
 
       # Build examples
       - name: Build examples
