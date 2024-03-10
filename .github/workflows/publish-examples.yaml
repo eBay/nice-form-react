@@ -37,6 +37,9 @@ jobs:
       # Build examples
       - name: Build examples
         run: |
+          cd packages/nice-form-react
+          pnpm build
+          cd ../../
           cd packages/examples-antd
           pnpm i
           pnpm build
