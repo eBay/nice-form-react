@@ -38,6 +38,7 @@ jobs:
       - name: Build examples
         run: |
           cd packages/examples-antd
+          pnpm i
           pnpm build
           cd ../../
 
