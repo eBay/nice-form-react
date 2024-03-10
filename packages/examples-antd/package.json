@@ -6,12 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build:tsc": "tsc && vite build",
-    "build": "vite build",
+    "build": "vite build --emptyOutDir",
     "preview": "vite preview"
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
-    "@ebay/nice-form-react": "^2.0.0",
+    "@ebay/nice-form-react": "workspace:*",
     "antd": "^5.1.1",
     "dayjs": "^1.11.7",
     "react": "^18.2.0",
