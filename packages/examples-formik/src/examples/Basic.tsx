@@ -7,11 +7,12 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { fieldToDateTimePicker } from 'formik-mui-x-date-pickers';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import type { Dayjs } from 'dayjs';
 
 const options = ['Apple', 'Orange', 'Banana'];
 
-const MyDateTimePicker = ({ children, ...props }) => {
-  props.onChange = (value) => {
+const MyDateTimePicker = ({ ...props }) => {
+  props.onChange = (value: Dayjs | null) => {
     props.form.setFieldTouched(props.field.name, true, false);
     props.form.setFieldValue(props.field.name, value, true);
     props.field.onChange(value);
@@ -21,13 +22,16 @@ const MyDateTimePicker = ({ children, ...props }) => {
     props.field.onBlur();
   };
   return (
-    <DateTimePicker {...fieldToDateTimePicker(props)} label={props?.label}>
-      {children}
+    <DateTimePicker
+      {...fieldToDateTimePicker({ field: props.field, form: props.form, meta: props.meta })}
+      label={props?.label}
+    >
+      {props.children}
     </DateTimePicker>
   );
 };
 
-NiceForm.defineWidget('date-time-picker', MyDateTimePicker);
+NiceForm.defineWidget('date-time-picker', MyDateTimePicker, ({ field }) => field);
 
 const Basic = () => {
   const initialValues = {
@@ -60,7 +64,7 @@ const Basic = () => {
           widget: 'text',
           fullWidth: true,
           widgetProps: {
-            onChange: (e) => console.log('onchange: ', e),
+            onChange: (e: React.ChangeEvent<HTMLInputElement>) => console.log('onchange: ', e),
           },
         },
         {
@@ -74,7 +78,7 @@ const Basic = () => {
           label: 'Email',
           widget: 'text',
           fullWidth: true,
-          validate: (value) => {
+          validate: (value: string) => {
             console.log('validating email', value);
             if (!value) {
               return 'Email is required';

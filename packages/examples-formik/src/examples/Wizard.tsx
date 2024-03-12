@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import NiceForm from '@ebay/nice-form-react';
 import type { Dayjs } from 'dayjs';
-import { Formik, Form } from 'formik';
+import { Formik, Form, FormikProps } from 'formik';
 import Button from '@mui/material/Button';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -9,9 +9,33 @@ import StepLabel from '@mui/material/StepLabel';
 import Divider from '@mui/material/Divider';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import {
+  FormikMuiNiceFormMeta,
+  FormikMuiNiceFormField,
+} from '@ebay/nice-form-react/adapters/formikMuiAdapter';
 const DateView = ({ value }: { value: Dayjs }) => (value ? value.format('MMM Do YYYY') : 'N/A');
 
-NiceForm.defineWidget('date-view', DateView);
+NiceForm.defineWidget('date-view', DateView, ({ field }) => field);
+
+interface StepItem {
+  title: string;
+  formMeta: FormikMuiNiceFormMeta;
+}
+
+interface FormValues {
+  name: {
+    first: string;
+    last: string;
+  };
+  dob: Dayjs | null;
+  noAccountInfo: boolean;
+  email: string;
+  security: string;
+  answer: string;
+  address: string;
+  city: string;
+  phone: string;
+}
 
 const wizardMeta = {
   steps: [
@@ -88,7 +112,7 @@ const Wizard = () => {
   // }
   // Generate a general review step
   const reviewFields: object[] = [];
-  newWizardMeta.steps.forEach((s: Step, i: number) => {
+  newWizardMeta.steps.forEach((s: StepItem, i: number) => {
     reviewFields.push(
       {
         key: 'review' + i,
@@ -118,31 +142,41 @@ const Wizard = () => {
 
   const stepsLength = newWizardMeta.steps.length;
 
-  const handleNext = (validateForm) => {
-    validateForm(newWizardMeta.steps?.[currentStep]?.formMeta?.fields?.map((f) => f.key)).then(
-      () => {
-        setCurrentStep(currentStep + 1);
-      },
-    );
+  const handleNext = (validateForm: FormikProps<FormValues>['validateForm']) => {
+    validateForm(
+      newWizardMeta.steps?.[currentStep]?.formMeta?.fields?.map(
+        (f: FormikMuiNiceFormField) => f.key,
+      ),
+    ).then(() => {
+      setCurrentStep(currentStep + 1);
+    });
   };
 
-  const handleBack = (validateForm) => {
-    validateForm(newWizardMeta.steps?.[currentStep]?.formMeta?.fields?.map((f) => f.key)).then(
-      () => {
-        setCurrentStep(currentStep - 1);
-      },
-    );
+  const handleBack = (validateForm: FormikProps<FormValues>['validateForm']) => {
+    validateForm(
+      newWizardMeta.steps?.[currentStep]?.formMeta?.fields?.map(
+        (f: FormikMuiNiceFormField) => f.key,
+      ),
+    ).then(() => {
+      setCurrentStep(currentStep - 1);
+    });
   };
 
   const isReview = currentStep === stepsLength - 1;
   return (
-    <Formik initialValues={{ name: { first: 'Nate', last: 'Wang' } }}>
+    <Formik
+      initialValues={{ name: { first: 'Nate', last: 'Wang' } }}
+      onSubmit={async (values) => {
+        await new Promise((r) => setTimeout(r, 500));
+        alert(JSON.stringify(values, null, 2));
+      }}
+    >
       {(form) => {
         return (
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <Form style={{ width: '880px' }}>
               <Stepper activeStep={currentStep}>
-                {newWizardMeta.steps.map((step, index) => {
+                {newWizardMeta.steps.map((step: StepItem, index: number) => {
                   const stepProps = {};
                   const labelProps = {};
                   return (

@@ -1,9 +1,13 @@
 import NiceForm from '@ebay/nice-form-react/NiceForm';
-import { Formik, Form } from 'formik';
+import { Formik, Form, FormikProps } from 'formik';
 import Button from '@mui/material/Button';
 
+interface FormValues {
+  favoriteFruit: string;
+  otherFruit?: string;
+}
 const FieldCondition = () => {
-  const getMeta = (form) => {
+  const getMeta = (form: FormikProps<FormValues>) => {
     const meta = {
       rowGap: 18,
       form,

@@ -1,9 +1,15 @@
 import Button from '@mui/material/Button';
 import NiceForm from '@ebay/nice-form-react';
 import { Formik, Form } from 'formik';
+import type { FormikHelpers } from 'formik';
+
+interface FormValues {
+  gender?: string;
+  note?: string;
+}
 
 const Coordinated = () => {
-  const getMeta = (formik) => {
+  const getMeta = (formik: FormikHelpers<FormValues>) => {
     return {
       rowGap: 18,
       fields: [
@@ -13,7 +19,8 @@ const Coordinated = () => {
           widget: 'radio-group',
           options: ['Male', 'Female'],
           widgetProps: {
-            onChange: (evt, value) => {
+            onChange: (evt: React.ChangeEvent<HTMLInputElement>, value: string) => {
+              console.log('evt: ', evt);
               if (value === 'Male') {
                 formik.setFieldValue('note', 'Hi, man!', true);
               } else {

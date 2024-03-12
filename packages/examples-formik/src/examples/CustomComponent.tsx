@@ -6,18 +6,35 @@ import MenuItem from '@mui/material/MenuItem';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import TextField from '@mui/material/TextField';
+import { FieldInputProps, FormikProps, FieldMetaProps } from 'formik';
+import type { Dayjs } from 'dayjs';
 
-const PriceInput = ({ form, field, meta, ...widgetProps }) => {
+interface FormValues {
+  product: string;
+  price: null | string;
+  currency: string;
+  captcha: string;
+  note: string;
+  shipDate: Dayjs[] | null;
+}
+interface FormikCustomizedProps {
+  form: FormikProps<FormValues>;
+  field: FieldInputProps<FormValues>;
+  meta: FieldMetaProps<FormValues>;
+  widgetProps: Record<string, string | null | undefined | number>;
+}
+
+const PriceInput: React.FC<FormikCustomizedProps> = ({ form, field, meta, ...widgetProps }) => {
   return field.value ? (
     <Grid container spacing={1}>
       <Grid item xs={8}>
         <TextField
           {...widgetProps}
           fullWidth
-          defaultValue={meta.initialValue.price}
+          defaultValue={meta.initialValue?.price}
           name="price"
           type="number"
-          error={meta.touched['product'] && !!form.errors['product']}
+          error={form.touched.product && !!form.errors.product}
           helperText={form.errors['product']?.toString()}
           onChange={(e) => {
             form.setFieldValue('_temp_price_currency', { ...field.value, price: e.target.value });
@@ -29,7 +46,7 @@ const PriceInput = ({ form, field, meta, ...widgetProps }) => {
           {...widgetProps}
           select
           fullWidth
-          defaultValue={meta.initialValue.currency}
+          defaultValue={meta.initialValue?.currency}
           label="Currency"
           name="currency"
           onChange={(e) => {
@@ -47,7 +64,7 @@ const PriceInput = ({ form, field, meta, ...widgetProps }) => {
   ) : null;
 };
 
-const CaptchaInput = ({ field, meta, form, ...widgetProps }) => (
+const CaptchaInput: React.FC<FormikCustomizedProps> = ({ field, meta, form, ...widgetProps }) => (
   <Grid container spacing={1}>
     <Grid item xs={8}>
       <TextField {...field} {...widgetProps} />
@@ -82,7 +99,7 @@ const CustomComponent = () => {
       {
         key: 'shipDate',
         label: 'Ship Date',
-        widget: ({ form, field, meta, ...widgetProps }) => {
+        widget: () => {
           return (
             <Grid container alignItems={'center'}>
               <NiceForm
@@ -129,7 +146,7 @@ const CustomComponent = () => {
         alert(JSON.stringify(values, null, 2));
       }}
     >
-      {(formik) => (
+      {() => (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <Form>
             <NiceForm meta={meta} />

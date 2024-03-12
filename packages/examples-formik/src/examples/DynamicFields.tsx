@@ -1,10 +1,16 @@
 import NiceForm from '@ebay/nice-form-react/NiceForm';
-import { Formik, Form } from 'formik';
+import { FormikMuiNiceFormMeta } from '@ebay/nice-form-react/adapters/formikMuiAdapter';
+import { Formik, Form, FormikProps } from 'formik';
 import Button from '@mui/material/Button';
 
+interface FormValues {
+  favoriteFruit: string;
+  otherFruit?: string;
+}
+
 const DynamicFields = () => {
-  const getMeta = (form) => {
-    const meta = {
+  const getMeta = (form: FormikProps<FormValues>) => {
+    const meta: FormikMuiNiceFormMeta = {
       rowGap: 18,
       form,
       fields: [

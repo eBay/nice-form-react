@@ -14,20 +14,17 @@ export default function FormInModal() {
   const handleClose = () => setOpen(false);
   const [pending, setPending] = useState(false);
 
-  const handleFinish = useCallback(
-    (values) => {
-      setPending(true);
-      setTimeout(() => {
-        setPending(false);
-        enqueueSnackbar('Submit success!', {
-          variant: 'success',
-          anchorOrigin: { vertical: 'top', horizontal: 'center' },
-        });
-        handleClose();
-      }, 2000);
-    },
-    [setPending],
-  );
+  const handleFinish = useCallback(() => {
+    setPending(true);
+    setTimeout(() => {
+      setPending(false);
+      enqueueSnackbar('Submit success!', {
+        variant: 'success',
+        anchorOrigin: { vertical: 'top', horizontal: 'center' },
+      });
+      handleClose();
+    }, 2000);
+  }, [setPending]);
 
   const meta = {
     rowGap: 18,

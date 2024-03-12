@@ -1,7 +1,8 @@
-import { useCallback, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Form, Formik, useFormikContext } from 'formik';
 import Button from '@mui/material/Button';
 import NiceForm from '@ebay/nice-form-react';
+import type { NiceFormMeta } from '@ebay/nice-form-react/types';
 
 const MOCK_DATA: {
   [key: string]: string[];
@@ -21,13 +22,17 @@ const fetchCities = (country: string): Promise<string[]> => {
   });
 };
 
+interface FormValues {
+  country: string;
+  city?: string;
+}
 const MyForm = () => {
-  const [cities, setCities] = useState<{ [key: string]: string }>({});
-  const { values, submitForm, setFieldValue } = useFormikContext();
+  const [cities, setCities] = useState<{ [key: string]: string[] }>({});
+  const { values, setFieldValue } = useFormikContext<FormValues>();
   const country = values.country;
   const loading = country && !cities[country];
 
-  const meta = {
+  const meta: NiceFormMeta = {
     rowGap: 18,
     fields: [
       {
