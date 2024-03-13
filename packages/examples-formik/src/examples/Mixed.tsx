@@ -6,9 +6,10 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { fieldToDatePicker } from 'formik-mui-x-date-pickers';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import type { Dayjs } from 'dayjs';
 
-const MyDatePicker = ({ children, ...props }) => {
-  props.onChange = (value) => {
+const MyDatePicker = ({ ...props }) => {
+  props.onChange = (value: Dayjs | null) => {
     props.form.setFieldTouched(props.field.name, true, false);
     props.form.setFieldValue(props.field.name, value, true);
     props.field.onChange(value);
@@ -18,16 +19,16 @@ const MyDatePicker = ({ children, ...props }) => {
     props.field.onBlur();
   };
   return (
-    <DatePicker {...fieldToDatePicker(props)} label={props?.label}>
-      {children}
+    <DatePicker {...fieldToDatePicker({ field: props.field, form: props.form, meta: props.meta })}>
+      {props.children}
     </DatePicker>
   );
 };
 
-NiceForm.defineWidget('date-picker', MyDatePicker);
+NiceForm.defineWidget('date-picker', MyDatePicker, ({ field }) => field);
 
 const Mixed = () => {
-  const getMeta1 = (formik) => {
+  const getMeta1 = () => {
     return {
       rowGap: 18,
       fields: [
@@ -36,7 +37,7 @@ const Mixed = () => {
           label: 'First Name',
           required: true,
           widgetProps: {
-            onChange: (e) => {
+            onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
               console.log('e: ', e);
             },
           },
@@ -46,14 +47,6 @@ const Mixed = () => {
           key: 'dob',
           label: 'Date of Birth',
           widget: 'date-picker',
-          widgetProps: {
-            onChange: (date) => {
-              console.log('date: ', date);
-            },
-            onError: (err) => {
-              console.log('err: ', err);
-            },
-          },
         },
       ],
     };
@@ -86,7 +79,7 @@ const Mixed = () => {
   return (
     <Formik
       layout="horizontal"
-      initialValues={{ prefix: '+86' }}
+      initialValues={{ prefix: '+86', phone: '' }}
       onSubmit={async (values) => {
         await new Promise((r) => setTimeout(r, 500));
         alert(JSON.stringify(values, null, 2));
@@ -96,7 +89,7 @@ const Mixed = () => {
       {(form) => (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <Form>
-            <NiceForm meta={getMeta1(form)} />
+            <NiceForm meta={getMeta1()} />
             <TextField
               fullWidth
               id="phone"

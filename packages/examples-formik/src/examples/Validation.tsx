@@ -1,5 +1,5 @@
 import NiceForm from '@ebay/nice-form-react';
-import { Formik, Form } from 'formik';
+import { Formik, Form, FormikProps } from 'formik';
 import Button from '@mui/material/Button';
 
 const MOCK_USERNAMES: {
@@ -10,8 +10,14 @@ const MOCK_USERNAMES: {
   kevin: true,
 };
 
+interface FormValues {
+  username?: string;
+  password?: string;
+  confirmPassword?: string;
+}
+
 const Validation = () => {
-  const getMeta = (form) => {
+  const getMeta = (form: FormikProps<FormValues>) => {
     const meta = {
       rowGap: 18,
       fields: [
@@ -21,7 +27,7 @@ const Validation = () => {
           placeholder: 'Note: username nate, bood or kevin already exist',
           hasFeedback: true, // Show validation status icon in the right
           required: true, // this adds an entry to rules: [{ required: true, message: 'Username is required' }]
-          validate: (value) => {
+          validate: (value: string) => {
             let error;
             if (MOCK_USERNAMES[value]) {
               error = `Username "${value}" already exists.`;
@@ -33,12 +39,7 @@ const Validation = () => {
           key: 'password',
           label: 'Password',
           widgetProps: { type: 'password' },
-          onChange: () => {
-            if (form.isFieldTouched('confirmPassword')) {
-              form.validateFields(['confirmPassword']);
-            }
-          },
-          validate: (value) => {
+          validate: (value: string) => {
             let error;
             if (!value) {
               error = `Password is required`;
@@ -51,7 +52,7 @@ const Validation = () => {
           label: 'Confirm Passowrd',
           required: true,
           widgetProps: { type: 'password' },
-          validate: (value) => {
+          validate: (value: string) => {
             let error;
             if (form.values.password !== value) {
               error = `Two passwords are inconsistent.`;
@@ -80,7 +81,7 @@ const Validation = () => {
         alert(JSON.stringify(values, null, 2));
       }}
     >
-      {(form) => (
+      {(form: FormikProps<FormValues>) => (
         <Form>
           <NiceForm meta={getMeta(form)} />
         </Form>

@@ -18,15 +18,18 @@ const MOCK_INFO = {
 const ViewEdit = () => {
   const [viewMode, setViewMode] = useState(true);
   const [personalInfo, setPersonalInfo] = useState(MOCK_INFO);
-  const handleSubmit = useCallback((values, { setSubmitting }) => {
-    console.log('Submit: ', values);
+  const handleSubmit = useCallback(
+    (values: typeof MOCK_INFO, { setSubmitting }: { setSubmitting: (value: boolean) => void }) => {
+      console.log('Submit: ', values);
 
-    setTimeout(() => {
-      setSubmitting(false);
-      setPersonalInfo(values);
-      setViewMode(true);
-    }, 1500);
-  }, []);
+      setTimeout(() => {
+        setSubmitting(false);
+        setPersonalInfo(values);
+        setViewMode(true);
+      }, 1500);
+    },
+    [],
+  );
 
   const getMeta = (form: FormikProps<typeof MOCK_INFO>) => {
     const meta: FormikMuiNiceFormMeta = {
