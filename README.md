@@ -6,8 +6,8 @@ It is a small utility with zero dependencies and can be seamlessly integrated wi
 
 Before reading through the detailed introduction below, we suggest you first going through our examples page so that you get a quick look about the scenarios NiceForm is used for and how API looks like:
 
-- MUI + Formik: https://opensource.ebay.com/nice-form-react/
-- Ant.Design: https://opensource.ebay.com/nice-form-react/
+- MUI + Formik: https://opensource.ebay.com/nice-form-react/formik
+- Ant.Design: https://opensource.ebay.com/nice-form-react/antd
 
 ## Get Started
 
