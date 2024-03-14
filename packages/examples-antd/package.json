@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
-    "@ebay/nice-form-react": "workspace:*",
+    "@ebay/nice-form-react": "^2.0.0",
     "antd": "^5.1.1",
     "dayjs": "^1.11.7",
     "react": "^18.2.0",

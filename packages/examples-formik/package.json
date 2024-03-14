@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port 3000",
-    "build": "tsc && vite build",
+    "build": "vite build --emptyOutDir",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -24,7 +24,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@ebay/nice-form-react": "workspace:*",
+    "@ebay/nice-form-react": "^2.0.0",
     "@types/prismjs": "^1.26.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
