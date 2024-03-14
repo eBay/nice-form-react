@@ -47,8 +47,8 @@ jobs:
           cd ../../
           cd packages/examples-antd
           pnpm build
-          # cd ../../packages/examples-formik
-          # pnpm build
+          cd ../../packages/examples-formik
+          pnpm build
           cd ../../
           cp ./docs/index.html ./gh-pages/index.html
 
