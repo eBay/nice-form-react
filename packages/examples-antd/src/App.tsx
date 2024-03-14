@@ -171,8 +171,8 @@ function App() {
     <div className="app">
       <div className="sider">
         <h1>
-          <span className="header-name">@ebay/nice-form-react examples</span>
-          <span className="example-title">Ant.Design</span>
+          <span className="header-name">Ant.Design</span>
+          <span className="example-title">Examples</span>
         </h1>
         <ul>
           {Object.keys(examples).map((key) => (
@@ -192,11 +192,11 @@ function App() {
             />
           </a>
           <br />
-          <a href="https://github.com/rekit/nice-form-react">
+          <a href="https://github.com/ebay/nice-form-react">
             <img src="https://img.shields.io/badge/API-Reference-green" alt="api reference" />
           </a>
           <br />
-          <a href="https://codesandbox.io/s/github/rekit/nice-form-react/tree/master/examples-v4">
+          <a href="https://codesandbox.io/s/github/ebay/nice-form-react/tree/master/examples-v4">
             <img
               width="150px"
               src="https://codesandbox.io/static/img/play-codesandbox.svg"

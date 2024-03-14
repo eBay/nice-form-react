@@ -165,8 +165,8 @@ function App() {
     <div className="app">
       <div className="sider">
         <h1>
-          <span className="header-name">@ebay/nice-form-react examples</span>
-          <span className="example-title">Formik + MUI</span>
+          <span className="header-name">Formik + MUI</span>
+          <span className="example-title">Examples</span>
         </h1>
         <ul>
           {Object.keys(examples).map((key) => (

@@ -4,7 +4,7 @@ While there're already some form libraries/frameworks focus on state management 
 
 It is a small utility with zero dependencies and can be seamlessly integrated with any React UI library or form state manager and comes with built-in support for native HTML, [antd.design](https://ant.design), and [Formik](https://formik.org) + [MUI](https://mui.com).
 
-Before reading through the detailed introduction below, we suggest you first going through our examples page so that you get a quick look about the scenarios NiceForm is used for and how API looks like:
+Before reading through the detailed introduction below, we suggest you first go through our examples page so that you get a quick glance at the scenarios NiceForm is used for and how API looks like:
 
 - MUI + Formik: https://opensource.ebay.com/nice-form-react/formik
 - Ant.Design: https://opensource.ebay.com/nice-form-react/antd
