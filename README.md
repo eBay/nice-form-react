@@ -4,6 +4,7 @@ While there're already some form libraries/frameworks focus on state management 
 
 It is a small utility with zero dependencies and can be seamlessly integrated with any React UI library or form state manager and comes with built-in support for native HTML, [antd.design](https://ant.design), and [Formik](https://formik.org) + [MUI](https://mui.com).
 
+
 Before read through the detailed introduction below, we suggest you first go through our examples page so that you get a quick glance at the scenarios NiceForm is used for and how API looks like:
 
 - [MUI + Formik Examples](https://opensource.ebay.com/nice-form-react/formik)
@@ -279,8 +280,6 @@ const meta = {
 
 Also, see the live example [here](https://opensource.ebay.com/nice-form-react/antd/#field-condition).
 
-
-
 ## View Mode and Edit Mode
 
 NiceForm provides two modes for form: edit mode and view mode. So you usually can render two modes of a form with a single meta object. For each field, you can define how a field is rendered under edit mode or view mode.
@@ -288,6 +287,8 @@ NiceForm provides two modes for form: edit mode and view mode. So you usually ca
 The mode could be form level or field level. To understand how it works, just see the example [here](https://opensource.ebay.com/nice-form-react/antd/#view-edit).
 
 ## API Reference
+
+> You can see the full API reference [here](https://opensource.ebay.com/nice-form-react/docs/api/).
 
 To create a form with Nice Form, you usually use below APIs:
 
