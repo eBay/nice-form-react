@@ -40,11 +40,14 @@ jobs:
       - name: Install dependencies
         run: pnpm i
 
-      # Build examples
+      # Build API docs and examples
       - name: Build examples
         run: |
+          mkdir gh-pages
           cd packages/nice-form-react
           pnpm build
+          pnpm gendoc
+          cp -r ./docs ../../gh-pages/docs
           cd ../../
           cd packages/examples-antd
           pnpm build
@@ -53,10 +56,8 @@ jobs:
           cd ../../
           cp ./docs/index.html ./gh-pages/index.html
 
-
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./gh-pages 
-
+          publish_dir: ./gh-pages
