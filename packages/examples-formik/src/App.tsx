@@ -165,7 +165,14 @@ function App() {
     <div className="app">
       <div className="sider">
         <h1>
-          <span className="header-name">Formik + MUI</span>
+          <select
+            className="lib-switch"
+            value="formik"
+            onChange={(e) => (document.location = `./${e.target.value}`)}
+          >
+            <option value="antd">Ant.Design</option>
+            <option value="formik">Formik + MUI</option>
+          </select>
           <span className="example-title">Examples</span>
         </h1>
         <ul>

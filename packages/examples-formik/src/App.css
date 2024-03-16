@@ -66,6 +66,16 @@
   color: #f90;
 }
 
+.app .lib-switch {
+  font-size: 14px;
+  display: block;
+  padding: 5px;
+  width: 90%;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  background-color: transparent;
+}
+
 .app .sider .social {
   padding-left: 28px;
   margin-top: 20px;

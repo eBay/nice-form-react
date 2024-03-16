@@ -32,30 +32,22 @@ export default () => {
   const getMeta = () => {
     const meta: AntdNiceFormMeta = {
       columns: 2,
-      disabled: pending,
-      viewMode: viewMode,
-      initialValues: personalInfo,
       fields: [
+        { key: 'firstName', label: ' Name', required: true },
+        { key: 'lastName', label: 'Last Name', required: true },
         {
-          key: 'name.first',
-          name: ['name', 'first'],
-          label: 'First Name',
-          required: true,
-          tooltip: 'hahahah',
+          key: 'gender',
+          label: 'Gender',
+          widget: 'radio-group',
+          options: ['Male', 'Female'],
         },
-        { key: 'name.last', label: 'Last Name', required: true },
-        { key: 'gender', label: 'Gender', widget: 'radio-group', options: ['Male', 'Female'] },
         {
           key: 'dateOfBirth',
           label: 'Date of Birth',
           widget: 'date-picker',
-          viewWidget: DateView,
+          fullWidth: true,
         },
-        { key: 'email', label: 'Email' },
-        { key: 'phone', label: 'Phone' },
-        { key: 'address', label: 'Address', colSpan: 2, clear: 'left' },
-        { key: 'city', label: 'City' },
-        { key: 'zipCode', label: 'Zip Code' },
+        { key: 'address', label: 'Address', colSpan: 2 },
       ],
     };
     return meta;
@@ -63,7 +55,7 @@ export default () => {
 
   return (
     <div>
-      <Form layout="horizontal" form={form} onFinish={handleFinish} style={{ width: '800px' }}>
+      <Form layout="horizontal" form={form} onFinish={handleFinish} style={{ width: '600px' }}>
         <h1 style={{ height: '40px', fontSize: '16px', marginTop: '50px', color: '#888' }}>
           Personal Infomation
           {viewMode && (
