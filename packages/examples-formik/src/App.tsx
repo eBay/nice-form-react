@@ -51,17 +51,17 @@ const examples: {
     description:
       "You can dynamically add or remove fields according to the user's input. In this example, if choose other, then a new input appears.",
   },
-  'form-list': {
-    name: 'Form List',
-    component: FormList,
-    description:
-      'Form list is a common usage of form builder, it allows you to add/remove form fields dynamically.',
-  },
   'field-condition': {
     name: 'Field Condition',
     component: FieldCondition,
     description:
       'By condition property, you can control whether to render a field or not. In this example, if choose other, then a new input appears.',
+  },
+  'form-list': {
+    name: 'Form List',
+    component: FormList,
+    description:
+      'Form list is a common usage of form builder, it allows you to add/remove form fields dynamically.',
   },
 
   'async-data-source': {

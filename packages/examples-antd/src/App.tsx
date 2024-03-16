@@ -53,6 +53,12 @@ const examples: {
     description:
       "You can dynamically add or remove fields according to the user's input. In this example, if choose other, then a new input appears.",
   },
+  'field-condition': {
+    name: 'Field Condition',
+    component: FieldCondition,
+    description:
+      'By condition property, you can control whether to render a field or not. In this example, if choose other, then a new input appears.',
+  },
   'form-list': {
     name: 'Form List',
     component: FormList,
@@ -62,12 +68,6 @@ const examples: {
     name: 'Manual Form List',
     component: FormListManual,
     description: 'Antd form list support.',
-  },
-  'field-condition': {
-    name: 'Field Condition',
-    component: FieldCondition,
-    description:
-      'By condition property, you can control whether to render a field or not. In this example, if choose other, then a new input appears.',
   },
 
   'async-data-source': {
