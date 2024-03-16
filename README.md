@@ -4,7 +4,7 @@ While there're already some form libraries/frameworks focus on state management 
 
 It is a small utility with zero dependencies and can be seamlessly integrated with any React UI library or form state manager and comes with built-in support for native HTML, [antd.design](https://ant.design), and [Formik](https://formik.org) + [MUI](https://mui.com).
 
-Before reading through the detailed introduction below, we suggest you first go through our examples page so that you get a quick glance at the scenarios NiceForm is used for and how API looks like:
+Before read through the detailed introduction below, we suggest you first go through our examples page so that you get a quick glance at the scenarios NiceForm is used for and how API looks like:
 
 - MUI + Formik: https://opensource.ebay.com/nice-form-react/formik
 - Ant.Design: https://opensource.ebay.com/nice-form-react/antd
@@ -221,15 +221,71 @@ NiceForm uses css grid to layout fields of a form. The related props include:
 
 ## Conditionally show/hide fields
 
-// TODO
+There are two approaches to define if a field should be showed.
+
+1. Modify meta directly
+
+For example, you need to show a text field based on the value of another field:
+
+```jsx
+const meta = {
+  fields: [
+    {
+      key: 'favoriteFruit',
+      label: 'Favorite Fruit',
+      widget: 'radio-group',
+      options: ['Apple', 'Orange', 'Other'],
+      initialValue: 'Apple',
+    },
+  ],
+};
+
+// Push a new field if choose others
+if (NiceForm.getFieldValue('favoriteFruit', meta, form) === 'Other') {
+  meta.fields.push({
+    key: 'otherFruit',
+    label: 'Other',
+  });
+}
+```
+
+You can also check the live example [here](https://opensource.ebay.com/nice-form-react/antd/#dynamic-fields).
+
+2. Use `condition` property
+
+NiceForm supports `condition` property on field to decide if the field should be rendered. It's a boolean value or a function returns a boolean value:
+
+```jsx
+boolean | function condition({ meta: meta, field: field }) {}
+```
+
+For example, besides approach 1 we can use `condition` alternatively:
+
+
+```jsx
+const meta = {
+  fields: [
+    {
+      key: 'favoriteFruit',
+      label: 'Favorite Fruit',
+      widget: 'radio-group',
+      options: ['Apple', 'Orange', 'Other'],
+      initialValue: 'Apple',
+      condition: () => NiceForm.getFieldValue('favoriteFruit', meta, form) === 'Other'
+    },
+  ],
+};
+```
+
+Also, see the live example [here](https://opensource.ebay.com/nice-form-react/antd/#field-condition).
+
+
 
 ## View Mode and Edit Mode
 
-Typically, NiceForm provides two modes for form: edit mode and view mode. So you usually can render two modes of a form with a single meta object. For each field, you can define how a field is rendered under edit mode or view mode.
+NiceForm provides two modes for form: edit mode and view mode. So you usually can render two modes of a form with a single meta object. For each field, you can define how a field is rendered under edit mode or view mode.
 
-The mode could be form level or field level.
-
-TODO: add more explaination here.
+The mode could be form level or field level. To understand how it works, just see the example [here](https://opensource.ebay.com/nice-form-react/antd/#view-edit).
 
 ## API Reference
 
@@ -475,6 +531,8 @@ export interface NiceFormField extends Record<string, unknown> {
 
 ## Migrating from antd-form-builder
 
+If you were using [antd-form-builder](https://github.com/rekit/antd-form-builder), you may notice below API changes:
+
 - elements -> fields
 - no `form` prop on `NiceForm`
 - NiceForm.useUpdateOnChange(fields)
@@ -485,25 +543,26 @@ export interface NiceFormField extends Record<string, unknown> {
 
 ## Contribution Guide
 
-1. Install deps
-   We use pnpm workspace to manage packages, so just run below command under root folder. It will install deps for all packages.
+### 1. Install deps
+We use pnpm workspace to manage packages, so just run below command under root folder. It will install deps for all packages.
 
 ```
 pnpm install
 ```
 
-2. Start lib dev:
+### 2. Start lib project in watch mode:
 
 ```
 cd packages/nice-form-react
 pnpm dev
 ```
 
-3. Start example project:
-   We provide antd and formik examples, start them.
+### 3. Link and start example project:
+We provide antd and formik examples, start them.
 
 ```
 cd packages/examples-[antd|formik]
+pnpm link ../nice-form-react
 pnpm dev
 ```
 
