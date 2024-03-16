@@ -168,7 +168,7 @@ function App() {
           <select
             className="lib-switch"
             value="formik"
-            onChange={(e) => (document.location = `./${e.target.value}`)}
+            onChange={(e) => (document.location = `../${e.target.value}`)}
           >
             <option value="antd">Ant.Design</option>
             <option value="formik">Formik + MUI</option>
