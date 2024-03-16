@@ -220,11 +220,11 @@ NiceForm uses css grid to layout fields of a form. The related props include:
 - FormField.colSpan: how many columns the field takes, for example, for FormMeta.columns is `3`, the field `colSpan` is `2` then the field takes 2/3 row space.
 - FormField.clear: the value can be `left`, `right` or `both`. It means if there can be a field shows in left, right or none. It will ignore `colSpan` value.
 
-## Conditionally show/hide fields
+## Dynamically show/hide fields
 
 There are two approaches to define if a field should be showed.
 
-1. Modify meta directly
+### 1. Modify meta directly
 
 For example, you need to show a text field based on the value of another field:
 
@@ -252,7 +252,7 @@ if (NiceForm.getFieldValue('favoriteFruit', meta, form) === 'Other') {
 
 You can also check the live example [here](https://opensource.ebay.com/nice-form-react/antd/#dynamic-fields).
 
-2. Use `condition` property
+### 2. Use `condition` property
 
 NiceForm supports `condition` property on field to decide if the field should be rendered. It's a boolean value or a function returns a boolean value:
 
