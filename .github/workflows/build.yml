@@ -37,4 +37,6 @@ jobs:
 
       # Build API docs and examples
       - name: build
-        run: pnpm build
+        run: |
+          cd packages/nice-form-react
+          pnpm build
