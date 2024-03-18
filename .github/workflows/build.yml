@@ -39,7 +39,7 @@ jobs:
       - name: Coveralls
         uses: coverallsapp/github-action@v2
 
-      - name: build
+      - name: Build
         run: |
           cd packages/nice-form-react
           pnpm build
