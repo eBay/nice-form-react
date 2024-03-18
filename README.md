@@ -8,7 +8,7 @@ While there're already some form libraries/frameworks focus on state management 
 [![Coverage](https://coveralls.io/repos/eBay/nice-form-react/badge.svg?branch=main&service=github)](https://coveralls.io/github/eBay/nice-form-react?branch=main)
 [![Demo](https://img.shields.io/badge/demo-link-orange.svg)](https://ebay.github.io/nice-form-react/)
 [![CodeQL Scan](https://github.com/ebay/nice-form-react/actions/workflows/codeql.yml/badge.svg)](https://github.com/ebay/nice-form-react/actions/workflows/codeql.yml)
-[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/eBay/nice-form-react/blob/main/LICENSE.md)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/eBay/nice-form-react/blob/main/LICENSE.txt)
 
 It is a small utility with zero dependencies and can be seamlessly integrated with any React UI library or form state manager and comes with built-in support for native HTML, [antd.design](https://ant.design), and [Formik](https://formik.org) + [MUI](https://mui.com).
 
