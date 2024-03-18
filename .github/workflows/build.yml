@@ -8,6 +8,7 @@ on:
       - main
     paths:
       - 'packages/nice-form-react/src/**'
+      - '.github/workflows/build.yml'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -35,8 +36,15 @@ jobs:
       - name: Install dependencies
         run: pnpm i
 
-      # Build API docs and examples
-      - name: build
+        # Build API docs and examples
+      - name: Unit tests
         run: |
           cd packages/nice-form-react
-          pnpm build
+          pnpm test
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@v2
+
+      # Build API docs and examples
+      - name: build
+        run: pnpm build

@@ -4,7 +4,6 @@ While there're already some form libraries/frameworks focus on state management 
 
 [![NPM](https://img.shields.io/npm/v/@ebay/nice-form-react.svg)](https://www.npmjs.com/package/@ebay/nice-form-react)
 [![build](https://github.com/ebay/nice-form-react/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/eBay/nice-form-react/actions/workflows/build.yml)
-[![unit-tests](https://github.com/ebay/nice-form-react/actions/workflows/unit-tests.yml/badge.svg?branch=main)](https://github.com/ebay/nice-form-react/actions/workflows/unit-tests.yml)
 [![Coverage](https://coveralls.io/repos/eBay/nice-form-react/badge.svg?branch=main&service=github)](https://coveralls.io/github/eBay/nice-form-react?branch=main)
 [![Demo](https://img.shields.io/badge/demo-link-orange.svg)](https://ebay.github.io/nice-form-react/)
 [![CodeQL Scan](https://github.com/ebay/nice-form-react/actions/workflows/codeql.yml/badge.svg)](https://github.com/ebay/nice-form-react/actions/workflows/codeql.yml)
