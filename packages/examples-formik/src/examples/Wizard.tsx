@@ -105,11 +105,6 @@ const Wizard = () => {
   // Clone the meta for dynamic change
   const newWizardMeta = JSON.parse(JSON.stringify(wizardMeta));
 
-  // In a wizard, every field should be preserved when swtich steps.
-  // newWizardMeta.steps.forEach(s => s.formMeta.fields.forEach(f => (f.preserve = true)))
-  // if (values.noAccountInfo) {
-  //   newWizardMeta.steps.splice(1, 1);
-  // }
   // Generate a general review step
   const reviewFields: object[] = [];
   newWizardMeta.steps.forEach((s: StepItem, i: number) => {

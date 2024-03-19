@@ -1,7 +1,6 @@
 import { useCallback } from 'react';
-import { Form, Select, Input, Button } from 'antd';
+import { Form, Input, Button } from 'antd';
 import NiceForm from '@ebay/nice-form-react';
-const { Option } = Select;
 
 export default () => {
   const [form] = Form.useForm();

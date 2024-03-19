@@ -73,7 +73,7 @@ const MultipleSections = () => {
           </section>
           <section style={{ marginBottom: 20 }}>
             <header style={{ marginBottom: 16 }}>
-              Contact Infomation
+              Contact Information
               <Divider />
             </header>
             <NiceForm meta={meta3} />

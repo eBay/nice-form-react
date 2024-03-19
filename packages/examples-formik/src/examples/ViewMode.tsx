@@ -19,7 +19,7 @@ const ViewMode = () => {
     email: 'myemail@gmail.com',
     gender: 'Male',
     dateOfBirth: dayjs('2100-01-01'),
-    // phone: '15988888888',
+    phone: '15988888888',
     city: 'Shanghai',
     address:
       'No.1000 Some Road, Zhangjiang Park, Pudong New District,Zhangjiang Park, Pudong New DistrictZhangjiang Park, Pudong New District',
@@ -50,7 +50,7 @@ const ViewMode = () => {
 
   return (
     <div style={{ width: '800px' }}>
-      <h1>Personal Infomation</h1>
+      <h1>Personal Information</h1>
       <NiceForm meta={meta} />
     </div>
   );

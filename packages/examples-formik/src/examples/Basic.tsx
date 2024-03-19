@@ -46,7 +46,6 @@ const Basic = () => {
     select: 'Apple',
   };
   const getMeta = (form: FormikProps<typeof initialValues>) => {
-    // console.log(form.errors);
     const formMeta: FormikMuiNiceFormMeta = {
       columns: 1,
       form,

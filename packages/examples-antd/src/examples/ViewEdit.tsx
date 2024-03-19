@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { Form, Button, Modal, message } from 'antd';
+import { useCallback, useState } from 'react';
+import { Form, Button, message } from 'antd';
 import NiceForm from '@ebay/nice-form-react';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import type { AntdNiceFormMeta } from '@ebay/nice-form-react/lib/esm/adapters/antdAdapter';
 
 const MOCK_INFO = {
@@ -13,7 +13,7 @@ const MOCK_INFO = {
   city: 'Shanghai',
   address: 'No.1000 Some Road, Zhangjiang Park, Pudong New District',
 };
-const DateView = ({ value }: { value: Dayjs }) => value.format('MMM Do YYYY');
+
 export default () => {
   const [form] = Form.useForm();
   const [viewMode, setViewMode] = useState(true);
@@ -25,7 +25,7 @@ export default () => {
       setPending(false);
       setPersonalInfo(values);
       setViewMode(true);
-      message.success('Infomation updated.');
+      message.success('Information updated.');
     }, 1500);
   }, []);
 
@@ -57,7 +57,7 @@ export default () => {
     <div>
       <Form layout="horizontal" form={form} onFinish={handleFinish} style={{ width: '600px' }}>
         <h1 style={{ height: '40px', fontSize: '16px', marginTop: '50px', color: '#888' }}>
-          Personal Infomation
+          Personal Information
           {viewMode && (
             <Button type="link" onClick={() => setViewMode(false)} style={{ float: 'right' }}>
               Edit

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { Form, Button } from 'antd';
 import NiceForm from '@ebay/nice-form-react';
 import type { AntdNiceFormMeta } from '@ebay/nice-form-react/lib/esm/adapters/antdAdapter';
@@ -19,7 +19,7 @@ export default () => {
         render() {
           return (
             <fieldset>
-              <legend>Contact Infomation</legend>
+              <legend>Contact Information</legend>
             </fieldset>
           );
         },

@@ -1,6 +1,5 @@
 import dayjs from 'dayjs';
 import type { Dayjs } from 'dayjs';
-import { Form } from 'antd';
 import NiceForm from '@ebay/nice-form-react';
 
 const DateView = ({ value }: { value: Dayjs }) => value.format('MMM Do YYYY');
@@ -40,7 +39,7 @@ const ViewMode = () => {
   return (
     <div>
       <div style={{ width: '800px' }}>
-        <h1>Personal Infomation</h1>
+        <h1>Personal Information</h1>
         <NiceForm meta={meta} />
       </div>
     </div>
