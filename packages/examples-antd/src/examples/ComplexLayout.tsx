@@ -19,7 +19,7 @@ export default () => {
         render() {
           return (
             <fieldset>
-              <legend>Contact Infomation</legend>
+              <legend>Contact Information</legend>
             </fieldset>
           );
         },

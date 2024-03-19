@@ -39,7 +39,7 @@ const ViewMode = () => {
   return (
     <div>
       <div style={{ width: '800px' }}>
-        <h1>Personal Infomation</h1>
+        <h1>Personal Information</h1>
         <NiceForm meta={meta} />
       </div>
     </div>

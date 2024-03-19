@@ -25,7 +25,7 @@ export default () => {
       setPending(false);
       setPersonalInfo(values);
       setViewMode(true);
-      message.success('Infomation updated.');
+      message.success('Information updated.');
     }, 1500);
   }, []);
 
@@ -57,7 +57,7 @@ export default () => {
     <div>
       <Form layout="horizontal" form={form} onFinish={handleFinish} style={{ width: '600px' }}>
         <h1 style={{ height: '40px', fontSize: '16px', marginTop: '50px', color: '#888' }}>
-          Personal Infomation
+          Personal Information
           {viewMode && (
             <Button type="link" onClick={() => setViewMode(false)} style={{ float: 'right' }}>
               Edit

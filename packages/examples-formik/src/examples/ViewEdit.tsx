@@ -84,7 +84,7 @@ const ViewEdit = () => {
   return (
     <div>
       <h1 style={{ fontSize: '16px', marginTop: '50px', color: '#888' }}>
-        Personal Infomation
+        Personal Information
         {viewMode && (
           <Button
             onClick={() => setViewMode(!viewMode)}

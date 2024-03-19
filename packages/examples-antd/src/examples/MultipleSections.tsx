@@ -56,7 +56,7 @@ export default () => {
         <NiceForm meta={meta2} />
       </fieldset>
       <fieldset>
-        <legend>Contact Infomation</legend>
+        <legend>Contact Information</legend>
         <NiceForm meta={meta3} />
       </fieldset>
       <Form.Item className="form-footer" wrapperCol={{ span: 16, offset: 8 }}>
