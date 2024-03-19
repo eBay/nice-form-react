@@ -1,4 +1,4 @@
-import { useCallback, ChangeEvent } from 'react';
+import { useCallback } from 'react';
 import { Form, Button } from 'antd';
 import type { RadioChangeEvent } from 'antd';
 import NiceForm from '@ebay/nice-form-react';

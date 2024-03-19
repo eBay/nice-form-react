@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { Form, Button, Modal, message } from 'antd';
+import { useCallback, useState } from 'react';
+import { Form, Button, message } from 'antd';
 import NiceForm from '@ebay/nice-form-react';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import type { AntdNiceFormMeta } from '@ebay/nice-form-react/lib/esm/adapters/antdAdapter';
 
 const MOCK_INFO = {
@@ -13,7 +13,7 @@ const MOCK_INFO = {
   city: 'Shanghai',
   address: 'No.1000 Some Road, Zhangjiang Park, Pudong New District',
 };
-const DateView = ({ value }: { value: Dayjs }) => value.format('MMM Do YYYY');
+
 export default () => {
   const [form] = Form.useForm();
   const [viewMode, setViewMode] = useState(true);
