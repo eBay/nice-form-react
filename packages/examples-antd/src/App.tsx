@@ -194,7 +194,7 @@ function App() {
         <div className="social">
           <a href="https://github.com/ebay/nice-form-react">
             <img
-              src="https://img.shields.io/github/stars/rekit/nice-form-react?style=social"
+              src="https://img.shields.io/github/stars/ebay/nice-form-react?style=social"
               alt="Github Repo"
             />
           </a>
