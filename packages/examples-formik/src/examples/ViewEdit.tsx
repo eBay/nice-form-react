@@ -4,7 +4,6 @@ import dayjs from 'dayjs';
 import { FormikMuiNiceFormMeta } from '@ebay/nice-form-react/adapters/formikMuiAdapter';
 import { Form, Formik, FormikProps } from 'formik';
 import { Button } from '@mui/material';
-// import type { AntdNiceFormMeta } from '@ebay/nice-form-react/lib/esm/adapters/antdAdapter';
 
 const MOCK_INFO = {
   name: { first: 'Nate', last: 'Wang' },
@@ -50,12 +49,6 @@ const ViewEdit = () => {
         },
         { key: 'name.last', label: 'Last Name', fullWidth: true, widget: 'text', required: true },
         { key: 'gender', label: 'Gender', widget: 'radio-group', options: ['Male', 'Female'] },
-        // {
-        //   key: 'dateOfBirth',
-        //   label: 'Date of Birth',
-        //   widget: 'date-picker',
-        //   // viewWidget: DateView,
-        // },
         { key: 'email', label: 'Email' },
         { key: 'phone', label: 'Phone' },
         { key: 'address', label: 'Address', colSpan: 2, clear: 'left' },

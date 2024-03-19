@@ -81,9 +81,6 @@ const Basic = () => {
       { key: 'date-picker', label: 'Date Picker', widget: 'date-picker', fullWidth: true },
     ],
   };
-  // if (NiceForm.getFieldValue('checkbox', meta, form)) {
-  //   meta.fields.splice(2, 1);
-  // }
   const handleFinish = (values: any) => {
     form.validateFields().then(() => {
       console.log('on finish: ', values);
