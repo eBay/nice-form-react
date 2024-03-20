@@ -1,6 +1,9 @@
-import dayjs from 'dayjs';
+import NiceForm, { config as niceFormConfig } from '@ebay/nice-form-react';
+import antdAdapter from '@ebay/nice-form-react/adapters/antdAdapter';
 import type { Dayjs } from 'dayjs';
-import NiceForm from '@ebay/nice-form-react';
+import dayjs from 'dayjs';
+
+niceFormConfig.addAdapter(antdAdapter);
 
 const DateView = ({ value }: { value: Dayjs }) => value.format('MMM Do YYYY');
 

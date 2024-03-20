@@ -1,6 +1,9 @@
-import { useState, useCallback } from 'react';
-import { Form, Button, Modal } from 'antd';
-import NiceForm from '@ebay/nice-form-react';
+import NiceForm, { config as niceFormConfig } from '@ebay/nice-form-react';
+import antdAdapter from '@ebay/nice-form-react/adapters/antdAdapter';
+import { Button, Form, Modal } from 'antd';
+import { useCallback, useState } from 'react';
+
+niceFormConfig.addAdapter(antdAdapter);
 
 export default () => {
   const [form] = Form.useForm();

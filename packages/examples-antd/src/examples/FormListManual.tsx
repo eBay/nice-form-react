@@ -1,7 +1,10 @@
-import { useCallback } from 'react';
-import { Form, Button } from 'antd';
 import { MinusCircleOutlined } from '@ant-design/icons';
-import NiceForm from '@ebay/nice-form-react';
+import NiceForm, { config as niceFormConfig } from '@ebay/nice-form-react';
+import antdAdapter from '@ebay/nice-form-react/adapters/antdAdapter';
+import { Button, Form } from 'antd';
+import { useCallback } from 'react';
+
+niceFormConfig.addAdapter(antdAdapter);
 
 export default () => {
   const meta = {

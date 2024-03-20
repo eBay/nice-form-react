@@ -1,7 +1,10 @@
-import { useCallback } from 'react';
-import { Form, Button, Input, Select, InputNumber, Row, Col } from 'antd';
+import NiceForm, { config as niceFormConfig } from '@ebay/nice-form-react';
+import antdAdapter from '@ebay/nice-form-react/adapters/antdAdapter';
 import type { InputProps } from 'antd';
-import NiceForm from '@ebay/nice-form-react';
+import { Button, Col, Form, Input, InputNumber, Row, Select } from 'antd';
+import { useCallback } from 'react';
+
+niceFormConfig.addAdapter(antdAdapter);
 
 const Option = Select.Option;
 // Here define a custom component just for layout

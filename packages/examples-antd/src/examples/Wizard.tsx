@@ -1,8 +1,11 @@
-import { useCallback, useState } from 'react';
-import { Form, Button, Steps } from 'antd';
-import NiceForm from '@ebay/nice-form-react';
+import NiceForm, { config as niceFormConfig } from '@ebay/nice-form-react';
+import antdAdapter from '@ebay/nice-form-react/adapters/antdAdapter';
 import { NiceFormFieldType } from '@ebay/nice-form-react/lib/esm/NiceFormMeta';
+import { Button, Form, Steps } from 'antd';
 import type { Dayjs } from 'dayjs';
+import { useCallback, useState } from 'react';
+
+niceFormConfig.addAdapter(antdAdapter);
 
 const { Step } = Steps;
 const DateView = ({ value }: { value: Dayjs }) => (value ? value.format('MMM Do YYYY') : 'N/A');

@@ -1,8 +1,11 @@
-import { useCallback, useState } from 'react';
-import { Form, Button, message } from 'antd';
-import NiceForm from '@ebay/nice-form-react';
-import dayjs from 'dayjs';
+import NiceForm, { config as niceFormConfig } from '@ebay/nice-form-react';
+import antdAdapter from '@ebay/nice-form-react/adapters/antdAdapter';
 import type { AntdNiceFormMeta } from '@ebay/nice-form-react/lib/esm/adapters/antdAdapter';
+import { Button, Form, message } from 'antd';
+import dayjs from 'dayjs';
+import { useCallback, useState } from 'react';
+
+niceFormConfig.addAdapter(antdAdapter);
 
 const MOCK_INFO = {
   name: { first: 'Nate', last: 'Wang' },

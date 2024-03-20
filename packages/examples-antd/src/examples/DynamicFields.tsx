@@ -1,6 +1,9 @@
-import { Form, Button } from 'antd';
-import NiceForm from '@ebay/nice-form-react';
+import NiceForm, { config as niceFormConfig } from '@ebay/nice-form-react';
+import antdAdapter from '@ebay/nice-form-react/adapters/antdAdapter';
 import type { AntdNiceFormMeta } from '@ebay/nice-form-react/lib/esm/adapters/antdAdapter';
+import { Button, Form } from 'antd';
+
+niceFormConfig.addAdapter(antdAdapter);
 
 export default () => {
   const [form] = Form.useForm();

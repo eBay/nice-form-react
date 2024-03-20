@@ -1,7 +1,10 @@
-import { useCallback, useState, useEffect } from 'react';
-import { Form, Button } from 'antd';
-import NiceForm from '@ebay/nice-form-react';
+import NiceForm, { config as niceFormConfig } from '@ebay/nice-form-react';
+import antdAdapter from '@ebay/nice-form-react/adapters/antdAdapter';
 import type { AntdNiceFormMeta } from '@ebay/nice-form-react/lib/esm/adapters/antdAdapter';
+import { Button, Form } from 'antd';
+import { useCallback, useEffect, useState } from 'react';
+
+niceFormConfig.addAdapter(antdAdapter);
 
 const MOCK_DATA: {
   [key: string]: string[];
