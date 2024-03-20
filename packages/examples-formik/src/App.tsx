@@ -3,8 +3,8 @@ import './App.css';
 import CodeViewer from './CodeViewer';
 import useHash from './useHash';
 
-const lazyImportComponent = (filename: string) => {
-  return lazy(() => import(`./examples/${filename}`));
+const lazyComponent = (importFunction: () => Promise<{ default: React.ComponentType }>) => { 
+  return lazy(importFunction);
 };
 
 const examples: {
@@ -16,64 +16,64 @@ const examples: {
 } = {
   simple: {
     name: 'Simple',
-    component: lazyImportComponent('Simple'),
+    component: lazyComponent(() => import('./examples/Simple')),
     description: 'The most simple usage.',
   },
   basic: {
     name: 'Basic',
-    component: lazyImportComponent('Basic'),
+    component: lazyComponent(() => import('./examples/Basic')),
     description: 'Basic usage.'
   },
   'view-mode': {
     name: 'View Mode',
-    component: lazyImportComponent('ViewMode'),
+    component: lazyComponent(() => import('./examples/ViewMode')),
     description:
       'FormBuilder could also be used as view mode just for displaying information in form layout. It could be used even without Form.',
   },
   'view-edit': {
     name: 'View / Edit',
-    component: lazyImportComponent('ViewEdit'),
+    component: lazyComponent(() => import('./examples/ViewEdit')),
     description: 'FormBuilder makes it super easy to toggle view/edit mode of a form.',
   },
   'dynamic-fields': {
     name: 'Dynamic Fields',
-    component: lazyImportComponent('DynamicFields'),
+    component: lazyComponent(() => import('./examples/DynamicFields')),
     description:
       "You can dynamically add or remove fields according to the user's input. In this example, if choose other, then a new input appears.",
   },
   'field-condition': {
     name: 'Field Condition',
-    component: lazyImportComponent('FieldCondition'),
+    component: lazyComponent(() => import('./examples/FieldCondition')),
     description:
       'By condition property, you can control whether to render a field or not. In this example, if choose other, then a new input appears.',
   },
   'form-list': {
     name: 'Form List',
-    component: lazyImportComponent('FormList'),
+    component: lazyComponent(() => import('./examples/FormList')),
     description:
       'Form list is a common usage of form builder, it allows you to add/remove form fields dynamically.',
   },
 
   'async-data-source': {
     name: 'Async Data Source',
-    component: lazyImportComponent('AsyncDataSource'),
+    component: lazyComponent(() => import('./examples/AsyncDataSource')),
     description:
       'Some form field widgets may need to load data source if necessary, the sample shows how to do it',
   },
   'multiple-columns': {
     name: 'Multiple Columns',
-    component: lazyImportComponent('MultipleColumns'),
+    component: lazyComponent(() => import('./examples/MultipleColumns')),
     description:
       "It's easy to set multiple columns layout for the form. Note it should be able to divide 24",
   },
   'complex-layout': {
     name: 'Complex Layout',
-    component: lazyImportComponent('ComplexLayout'),
+    component: lazyComponent(() => import('./examples/ComplexLayout')),
     description: 'The example shows a complex layout. Similar approach with multiple columns.',
   },
   'multiple-sections': {
     name: 'Multiple Sections',
-    component: lazyImportComponent('MultipleSections'),
+    component: lazyComponent(() => import('./examples/MultipleSections')),
     description:
       'Some times you need to group fields into different fieldset, or need more complex layout. You can use multiple form builders in one form.',
   },
@@ -85,7 +85,7 @@ const examples: {
   // },
   validation: {
     name: 'Validation',
-    component: lazyImportComponent('Validation'),
+    component: lazyComponent(() => import('./examples/Validation')),
     description: (
       <span>
         You can use rules property to specify how to validate fields. For more information please go
@@ -102,31 +102,31 @@ const examples: {
   },
   'form-in-modal': {
     name: 'Form in Modal',
-    component: lazyImportComponent('FormInModal'),
+    component: lazyComponent(() => import('./examples/FormInModal')),
     description:
       'The example shows how to use form in a dialog to call api and show status in dialog buttons.',
   },
   coordinated: {
     name: 'Coordinated Controls',
-    component: lazyImportComponent('Coordinated'),
+    component: lazyComponent(() => import('./examples/Coordinated')),
     description:
       'You can set field value according to input of another control by use form.setFieldsValue api.',
   },
   'custom-component': {
     name: 'Custom Component',
-    component: lazyImportComponent('CustomComponent'),
+    component: lazyComponent(() => import('./examples/CustomComponent')),
     description:
       "It's easy to create your own form field component, ether to get new capabilities or even just for layout.",
   },
   mixed: {
     name: 'Mixed',
-    component: lazyImportComponent('Mixed'),
+    component: lazyComponent(() => import('./examples/Mixed')),
     description:
       'Form builder is designed to not limit original antd form api, so you can use them together.',
   },
   wizard: {
     name: 'Wizard',
-    component: lazyImportComponent('Wizard'),
+    component: lazyComponent(() => import('./examples/Wizard')),
     description:
       'Wizard is an advanced usage of form builder, you can design your own meta structure to support dynamic wizard.',
   },
