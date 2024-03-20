@@ -1,6 +1,11 @@
+import NiceForm, { config as niceFormConfig } from '@ebay/nice-form-react';
+import formikAdapter from '@ebay/nice-form-react/adapters/formikAdapter';
+import formikMuiAdapter from '@ebay/nice-form-react/adapters/formikMuiAdapter';
 import Button from '@mui/material/Button';
-import NiceForm from '@ebay/nice-form-react';
-import { Formik, Form } from 'formik';
+import { Form, Formik } from 'formik';
+
+niceFormConfig.addAdapter(formikAdapter);
+niceFormConfig.addAdapter(formikMuiAdapter);
 
 const FormList = () => {
   const meta = {

@@ -1,8 +1,13 @@
-import { useState, useEffect } from 'react';
-import { Form, Formik, useFormikContext } from 'formik';
-import Button from '@mui/material/Button';
-import NiceForm from '@ebay/nice-form-react';
+import NiceForm, { config as niceFormConfig } from '@ebay/nice-form-react';
+import formikAdapter from '@ebay/nice-form-react/adapters/formikAdapter';
+import formikMuiAdapter from '@ebay/nice-form-react/adapters/formikMuiAdapter';
 import type { NiceFormMeta } from '@ebay/nice-form-react/types';
+import Button from '@mui/material/Button';
+import { Form, Formik, useFormikContext } from 'formik';
+import { useEffect, useState } from 'react';
+
+niceFormConfig.addAdapter(formikAdapter);
+niceFormConfig.addAdapter(formikMuiAdapter);
 
 const MOCK_DATA: {
   [key: string]: string[];

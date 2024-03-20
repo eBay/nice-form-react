@@ -1,7 +1,13 @@
-import { Formik, Form } from 'formik';
+import { config as niceFormConfig } from '@ebay/nice-form-react';
 import NiceForm from '@ebay/nice-form-react/NiceForm';
+import formikAdapter from '@ebay/nice-form-react/adapters/formikAdapter';
+import formikMuiAdapter from '@ebay/nice-form-react/adapters/formikMuiAdapter';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
+import { Form, Formik } from 'formik';
+
+niceFormConfig.addAdapter(formikAdapter);
+niceFormConfig.addAdapter(formikMuiAdapter);
 
 const ComplexLayout = () => {
   const meta = {

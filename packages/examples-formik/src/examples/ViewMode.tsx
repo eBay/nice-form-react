@@ -1,8 +1,13 @@
-import dayjs from 'dayjs';
-import type { Dayjs } from 'dayjs';
-import NiceForm, { NiceFormMeta } from '@ebay/nice-form-react';
+import NiceForm, { NiceFormMeta, config as niceFormConfig } from '@ebay/nice-form-react';
+import formikAdapter from '@ebay/nice-form-react/adapters/formikAdapter';
+import formikMuiAdapter from '@ebay/nice-form-react/adapters/formikMuiAdapter';
 import { InputLabel } from '@mui/material';
+import type { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import { ReactElement } from 'react';
+
+niceFormConfig.addAdapter(formikAdapter);
+niceFormConfig.addAdapter(formikMuiAdapter);
 
 const DateView = ({ value, label }: { value: Dayjs; label: ReactElement }) => {
   return (

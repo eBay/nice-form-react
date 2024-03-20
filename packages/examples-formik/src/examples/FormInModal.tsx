@@ -1,12 +1,17 @@
-import { useCallback, useState } from 'react';
+import NiceForm, { config as niceFormConfig } from '@ebay/nice-form-react';
+import formikAdapter from '@ebay/nice-form-react/adapters/formikAdapter';
+import formikMuiAdapter from '@ebay/nice-form-react/adapters/formikMuiAdapter';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import NiceForm from '@ebay/nice-form-react';
-import { Formik, Form } from 'formik';
+import { Form, Formik } from 'formik';
 import { SnackbarProvider, enqueueSnackbar } from 'notistack';
+import { useCallback, useState } from 'react';
+
+niceFormConfig.addAdapter(formikAdapter);
+niceFormConfig.addAdapter(formikMuiAdapter);
 
 export default function FormInModal() {
   const [open, setOpen] = useState(false);

@@ -1,6 +1,11 @@
-import NiceForm from '@ebay/nice-form-react';
-import { Formik, Form, FormikProps } from 'formik';
+import NiceForm, { config as niceFormConfig } from '@ebay/nice-form-react';
+import formikAdapter from '@ebay/nice-form-react/adapters/formikAdapter';
+import formikMuiAdapter from '@ebay/nice-form-react/adapters/formikMuiAdapter';
 import Button from '@mui/material/Button';
+import { Form, Formik, FormikProps } from 'formik';
+
+niceFormConfig.addAdapter(formikAdapter);
+niceFormConfig.addAdapter(formikMuiAdapter);
 
 const MOCK_USERNAMES: {
   [key: string]: boolean;

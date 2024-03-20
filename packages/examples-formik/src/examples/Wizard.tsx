@@ -1,18 +1,44 @@
-import { useState } from 'react';
-import NiceForm from '@ebay/nice-form-react';
-import type { Dayjs } from 'dayjs';
-import { Formik, Form, FormikProps } from 'formik';
+import NiceForm, { config as niceFormConfig } from '@ebay/nice-form-react';
+import formikAdapter from '@ebay/nice-form-react/adapters/formikAdapter';
+import formikMuiAdapter, {
+  FormikMuiNiceFormField,
+  FormikMuiNiceFormMeta,
+} from '@ebay/nice-form-react/adapters/formikMuiAdapter';
 import Button from '@mui/material/Button';
-import Stepper from '@mui/material/Stepper';
+import Divider from '@mui/material/Divider';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-import Divider from '@mui/material/Divider';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import Stepper from '@mui/material/Stepper';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import {
-  FormikMuiNiceFormMeta,
-  FormikMuiNiceFormField,
-} from '@ebay/nice-form-react/adapters/formikMuiAdapter';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import type { Dayjs } from 'dayjs';
+import { Form, Formik, FormikProps } from 'formik';
+import { fieldToDatePicker } from 'formik-mui-x-date-pickers';
+import { useState } from 'react';
+
+niceFormConfig.addAdapter(formikAdapter);
+niceFormConfig.addAdapter(formikMuiAdapter);
+
+const MyDatePicker = ({ ...props }) => {
+  props.onChange = (value: Dayjs | null) => {
+    props.form.setFieldTouched(props.field.name, true, false);
+    props.form.setFieldValue(props.field.name, value, true);
+    props.field.onChange(value);
+  };
+  props.onBlur = () => {
+    props.form.setFieldTouched(props.field.name, true, true);
+    props.field.onBlur();
+  };
+  return (
+    <DatePicker {...fieldToDatePicker({ field: props.field, form: props.form, meta: props.meta })}>
+      {props.children}
+    </DatePicker>
+  );
+};
+
+NiceForm.defineWidget('date-picker', MyDatePicker, ({ field }) => field);
+
 const DateView = ({ value }: { value: Dayjs }) => (value ? value.format('MMM Do YYYY') : 'N/A');
 
 NiceForm.defineWidget('date-view', DateView, ({ field }) => field);

@@ -1,9 +1,13 @@
-import { useCallback, useState } from 'react';
-import NiceForm from '@ebay/nice-form-react';
-import dayjs from 'dayjs';
-import { FormikMuiNiceFormMeta } from '@ebay/nice-form-react/adapters/formikMuiAdapter';
-import { Form, Formik, FormikProps } from 'formik';
+import NiceForm, { config as niceFormConfig } from '@ebay/nice-form-react';
+import formikAdapter from '@ebay/nice-form-react/adapters/formikAdapter';
+import formikMuiAdapter, { FormikMuiNiceFormMeta } from '@ebay/nice-form-react/adapters/formikMuiAdapter';
 import { Button } from '@mui/material';
+import dayjs from 'dayjs';
+import { Form, Formik, FormikProps } from 'formik';
+import { useCallback, useState } from 'react';
+
+niceFormConfig.addAdapter(formikAdapter);
+niceFormConfig.addAdapter(formikMuiAdapter);
 
 const MOCK_INFO = {
   name: { first: 'Nate', last: 'Wang' },

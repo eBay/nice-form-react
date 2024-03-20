@@ -1,12 +1,17 @@
-import { Form, Formik } from 'formik';
-import NiceForm from '@ebay/nice-form-react';
+import NiceForm, { config as niceFormConfig } from '@ebay/nice-form-react';
+import formikAdapter from '@ebay/nice-form-react/adapters/formikAdapter';
+import formikMuiAdapter from '@ebay/nice-form-react/adapters/formikMuiAdapter';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { fieldToDatePicker } from 'formik-mui-x-date-pickers';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import type { Dayjs } from 'dayjs';
+import { Form, Formik } from 'formik';
+import { fieldToDatePicker } from 'formik-mui-x-date-pickers';
+
+niceFormConfig.addAdapter(formikAdapter);
+niceFormConfig.addAdapter(formikMuiAdapter);
 
 const MyDatePicker = ({ ...props }) => {
   props.onChange = (value: Dayjs | null) => {
