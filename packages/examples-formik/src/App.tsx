@@ -1,89 +1,79 @@
-import React from 'react';
-import useHash from './useHash';
+import React, { Suspense, lazy } from 'react';
 import './App.css';
-// import NiceFormMeta from '@ebay/nice-form-react/src/NiceFormMeta';
 import CodeViewer from './CodeViewer';
-import Basic from './examples/Basic';
-import Simple from './examples/Simple';
-import ViewEdit from './examples/ViewEdit';
-import ComplexLayout from './examples/ComplexLayout';
-import DynamicFields from './examples/DynamicFields';
-import FieldCondition from './examples/FieldCondition';
-import ViewMode from './examples/ViewMode';
-import AsyncDataSource from './examples/AsyncDataSource';
-import MultipleColumns from './examples/MultipleColumns';
-import MultipleSections from './examples/MultipleSections';
-import Validation from './examples/Validation';
-import FormInModal from './examples/FormInModal';
-import Coordinated from './examples/Coordinated';
-import CustomComponent from './examples/CustomComponent';
-import FormList from './examples/FormList';
-import Mixed from './examples/Mixed';
-import Wizard from './examples/Wizard';
+import useHash from './useHash';
+
+const lazyImportComponent = (filename: string) => {
+  return lazy(() => import(`./examples/${filename}`));
+};
 
 const examples: {
   [key: string]: {
     name: string;
-    component?: () => JSX.Element;
+    component?: React.LazyExoticComponent<React.ComponentType>;
     description: React.ReactNode;
   };
 } = {
   simple: {
     name: 'Simple',
-    component: Simple,
+    component: lazyImportComponent('Simple'),
     description: 'The most simple usage.',
   },
-  basic: { name: 'Basic', component: Basic, description: 'Basic usage.' },
+  basic: {
+    name: 'Basic',
+    component: lazyImportComponent('Basic'),
+    description: 'Basic usage.'
+  },
   'view-mode': {
     name: 'View Mode',
-    component: ViewMode,
+    component: lazyImportComponent('ViewMode'),
     description:
       'FormBuilder could also be used as view mode just for displaying information in form layout. It could be used even without Form.',
   },
   'view-edit': {
     name: 'View / Edit',
-    component: ViewEdit,
+    component: lazyImportComponent('ViewEdit'),
     description: 'FormBuilder makes it super easy to toggle view/edit mode of a form.',
   },
   'dynamic-fields': {
     name: 'Dynamic Fields',
-    component: DynamicFields,
+    component: lazyImportComponent('DynamicFields'),
     description:
       "You can dynamically add or remove fields according to the user's input. In this example, if choose other, then a new input appears.",
   },
   'field-condition': {
     name: 'Field Condition',
-    component: FieldCondition,
+    component: lazyImportComponent('FieldCondition'),
     description:
       'By condition property, you can control whether to render a field or not. In this example, if choose other, then a new input appears.',
   },
   'form-list': {
     name: 'Form List',
-    component: FormList,
+    component: lazyImportComponent('FormList'),
     description:
       'Form list is a common usage of form builder, it allows you to add/remove form fields dynamically.',
   },
 
   'async-data-source': {
     name: 'Async Data Source',
-    component: AsyncDataSource,
+    component: lazyImportComponent('AsyncDataSource'),
     description:
       'Some form field widgets may need to load data source if necessary, the sample shows how to do it',
   },
   'multiple-columns': {
     name: 'Multiple Columns',
-    component: MultipleColumns,
+    component: lazyImportComponent('MultipleColumns'),
     description:
       "It's easy to set multiple columns layout for the form. Note it should be able to divide 24",
   },
   'complex-layout': {
     name: 'Complex Layout',
-    component: ComplexLayout,
+    component: lazyImportComponent('ComplexLayout'),
     description: 'The example shows a complex layout. Similar approach with multiple columns.',
   },
   'multiple-sections': {
     name: 'Multiple Sections',
-    component: MultipleSections,
+    component: lazyImportComponent('MultipleSections'),
     description:
       'Some times you need to group fields into different fieldset, or need more complex layout. You can use multiple form builders in one form.',
   },
@@ -95,7 +85,7 @@ const examples: {
   // },
   validation: {
     name: 'Validation',
-    component: Validation,
+    component: lazyImportComponent('Validation'),
     description: (
       <span>
         You can use rules property to specify how to validate fields. For more information please go
@@ -112,31 +102,31 @@ const examples: {
   },
   'form-in-modal': {
     name: 'Form in Modal',
-    component: FormInModal,
+    component: lazyImportComponent('FormInModal'),
     description:
       'The example shows how to use form in a dialog to call api and show status in dialog buttons.',
   },
   coordinated: {
     name: 'Coordinated Controls',
-    component: Coordinated,
+    component: lazyImportComponent('Coordinated'),
     description:
       'You can set field value according to input of another control by use form.setFieldsValue api.',
   },
   'custom-component': {
     name: 'Custom Component',
-    component: CustomComponent,
+    component: lazyImportComponent('CustomComponent'),
     description:
       "It's easy to create your own form field component, ether to get new capabilities or even just for layout.",
   },
   mixed: {
     name: 'Mixed',
-    component: Mixed,
+    component: lazyImportComponent('Mixed'),
     description:
       'Form builder is designed to not limit original antd form api, so you can use them together.',
   },
   wizard: {
     name: 'Wizard',
-    component: Wizard,
+    component: lazyImportComponent('Wizard'),
     description:
       'Wizard is an advanced usage of form builder, you can design your own meta structure to support dynamic wizard.',
   },
@@ -207,10 +197,12 @@ function App() {
         </div>
       </div>
       <div className="example-container">
-        <div>{renderExample()}</div>
-        <div className="code-container">
-          <CodeViewer code={current} />
-        </div>
+        <Suspense>
+          <div>{renderExample()}</div>
+          <div className="code-container">
+            <CodeViewer code={current} />
+          </div>
+        </Suspense>
       </div>
     </div>
   );
