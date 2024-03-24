@@ -6,5 +6,6 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: '../../gh-pages/antd',
+    minify: false,
   },
 });
