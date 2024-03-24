@@ -1,4 +1,4 @@
-name: release
+name: npm-publish
 
 # Controls when the workflow will run
 on:
@@ -43,4 +43,4 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           cd packages/nice-form-react
-          pnpm publish --access public
+          npm publish --access public
