@@ -1,31 +1,9 @@
-import { Form, Formik } from 'formik';
 import NiceForm from '@ebay/nice-form-react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { fieldToDatePicker } from 'formik-mui-x-date-pickers';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import type { Dayjs } from 'dayjs';
-
-const MyDatePicker = ({ ...props }) => {
-  props.onChange = (value: Dayjs | null) => {
-    props.form.setFieldTouched(props.field.name, true, false);
-    props.form.setFieldValue(props.field.name, value, true);
-    props.field.onChange(value);
-  };
-  props.onBlur = () => {
-    props.form.setFieldTouched(props.field.name, true, true);
-    props.field.onBlur();
-  };
-  return (
-    <DatePicker {...fieldToDatePicker({ field: props.field, form: props.form, meta: props.meta })}>
-      {props.children}
-    </DatePicker>
-  );
-};
-
-NiceForm.defineWidget('date-picker', MyDatePicker, ({ field }) => field);
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { Form, Formik } from 'formik';
 
 const Mixed = () => {
   const getMeta1 = () => {
