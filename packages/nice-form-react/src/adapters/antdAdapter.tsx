@@ -228,6 +228,8 @@ const antdAdapter: NiceFormAdapter = {
           rules.unshift({ required: true });
         }
 
+        (newField as AntdNiceFormField).rules = rules;
+
         if (newField.widgetProps?.fullWidth) {
           if (!newField.widgetProps?.style) {
             newField.widgetProps.style = {};
