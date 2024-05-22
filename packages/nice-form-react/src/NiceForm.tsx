@@ -141,7 +141,7 @@ NiceForm.addAdapter = (adapter: NiceFormAdapter) => {
 NiceForm.defineWidget = (
   name: string,
   widget: ReactComponent,
-  metaConverter: FieldMetaConverter,
+  metaConverter?: FieldMetaConverter,
 ) => {
   config.defineWidget(name, widget, metaConverter);
 };

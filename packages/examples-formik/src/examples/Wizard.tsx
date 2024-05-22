@@ -13,10 +13,9 @@ import {
   FormikMuiNiceFormMeta,
   FormikMuiNiceFormField,
 } from '@ebay/nice-form-react/adapters/formikMuiAdapter';
-import cloneDeep from 'lodash/cloneDeep';
 const DateView = ({ value }: { value: Dayjs }) => (value ? value.format('MMM Do YYYY') : 'N/A');
 
-NiceForm.defineWidget('date-view', DateView, ({ field }) => field);
+NiceForm.defineWidget('date-view', DateView);
 
 interface StepItem {
   title: string;
@@ -38,73 +37,75 @@ interface FormValues {
   phone: string;
 }
 
-const wizardMeta = {
-  steps: [
-    {
-      title: 'Personal Information',
-      formMeta: {
-        columns: 2,
-        rowGap: 18,
-        columnGap: 18,
-        fields: [
-          { key: 'name.first', label: 'First Name', initialValue: 'Nate', required: true },
-          { key: 'name.last', label: 'Last Name', initialValue: 'Wang', required: true },
-          { key: 'dob', label: 'Date of Birth', widget: 'date-picker', viewWidget: 'date-view' },
-          {
-            key: 'noAccountInfo',
-            label: 'No Account Info',
-            widget: 'switch',
-            tooltip: 'Switch on to remove account step',
-          },
-        ],
+const getInitialMeta = () =>  {
+  const wizardMeta = {
+    steps: [
+      {
+        title: 'Personal Information',
+        formMeta: {
+          columns: 2,
+          rowGap: 18,
+          columnGap: 18,
+          fields: [
+            { key: 'name.first', label: 'First Name', initialValue: 'Nate', required: true },
+            { key: 'name.last', label: 'Last Name', initialValue: 'Wang', required: true },
+            { key: 'dob', label: 'Date of Birth', widget: 'date-picker', viewWidget: 'date-view' },
+            {
+              key: 'noAccountInfo',
+              label: 'No Account Info',
+              widget: 'switch',
+              tooltip: 'Switch on to remove account step',
+            },
+          ],
+        },
       },
-    },
-    {
-      title: 'Account Information',
-      formMeta: {
-        columns: 2,
-        rowGap: 18,
-        columnGap: 18,
-        fields: [
-          {
-            key: 'email',
-            label: 'Email',
-            clear: 'right',
-            rules: [{ type: 'email', message: 'Invalid email' }],
-          },
-          {
-            key: 'security',
-            label: 'Security Question',
-            widget: 'select',
-            fullWidth: true,
-            placeholder: 'Select a question...',
-            options: ["What's your pet's name?", 'Your nick name?'],
-          },
-          { key: 'answer', label: 'Security Answer' },
-        ],
+      {
+        title: 'Account Information',
+        formMeta: {
+          columns: 2,
+          rowGap: 18,
+          columnGap: 18,
+          fields: [
+            {
+              key: 'email',
+              label: 'Email',
+              clear: 'right',
+              rules: [{ type: 'email', message: 'Invalid email' }],
+            },
+            {
+              key: 'security',
+              label: 'Security Question',
+              widget: 'select',
+              fullWidth: true,
+              placeholder: 'Select a question...',
+              options: ["What's your pet's name?", 'Your nick name?'],
+            },
+            { key: 'answer', label: 'Security Answer' },
+          ],
+        },
       },
-    },
-    {
-      title: 'Contact Information',
-      formMeta: {
-        columns: 2,
-        rowGap: 18,
-        columnGap: 18,
-        fields: [
-          { key: 'address', label: 'Address', colSpan: 2 },
-          { key: 'city', label: 'City' },
-          { key: 'phone', label: 'phone' },
-        ],
+      {
+        title: 'Contact Information',
+        formMeta: {
+          columns: 2,
+          rowGap: 18,
+          columnGap: 18,
+          fields: [
+            { key: 'address', label: 'Address', colSpan: 2 },
+            { key: 'city', label: 'City' },
+            { key: 'phone', label: 'phone' },
+          ],
+        },
       },
-    },
-  ],
+    ] as StepItem[],
+  };
+  return wizardMeta;
 };
 
 const Wizard = () => {
   const [currentStep, setCurrentStep] = useState(0);
-
   // Clone the meta for dynamic change
-  const newWizardMeta = cloneDeep(wizardMeta);
+  const newWizardMeta = getInitialMeta();
 
   // Generate a general review step
   const reviewFields: object[] = [];

@@ -423,7 +423,7 @@ export interface NiceFormConfig {
   defineWidget: (
     name: string,
     widget: ReactComponent,
-    metaConverter: ({ meta, field }: { meta: NiceFormMeta; field: NiceFormField }) => NiceFormField,
+    metaConverter?: ({ meta, field }: { meta: NiceFormMeta; field: NiceFormField }) => NiceFormField,
   ) => void;
 
   /**
