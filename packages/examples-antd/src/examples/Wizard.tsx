@@ -94,7 +94,7 @@ export default () => {
     newWizardMeta.steps.splice(1, 1);
   }
   // Generate a general review step
-  const reviewFields: object[] = [];
+  const reviewFields: NiceFormFieldType[] = [];
   newWizardMeta.steps.forEach((s: Step, i: number) => {
     reviewFields.push(
       {

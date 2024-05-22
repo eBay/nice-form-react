@@ -108,7 +108,7 @@ const Wizard = () => {
   const newWizardMeta = getInitialMeta();
 
   // Generate a general review step
-  const reviewFields: object[] = [];
+  const reviewFields: FormikMuiNiceFormField[] = [];
   newWizardMeta.steps.forEach((s: StepItem, i: number) => {
     reviewFields.push(
       {
