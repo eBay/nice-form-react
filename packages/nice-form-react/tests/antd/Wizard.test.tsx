@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from 'react';
 import { Form, Button, Steps } from 'antd';
-import cloneDeep from 'lodash/cloneDeep';
 import NiceForm from '../../src/NiceForm';
 import config from '../../src/config';
 import { render, screen } from '@testing-library/react';
@@ -14,6 +13,7 @@ const DateView = ({ value }: { value: Dayjs }) => (value ? value.format('MMM Do 
 NiceForm.defineWidget('date-view', DateView, ({ field }) => field);
 
 interface Step {
+  key: string;
   title: string;
   formMeta: {
     columns: number;
@@ -25,79 +25,85 @@ interface WizardMeta {
   steps: Step[];
 }
 
-const wizardMeta: WizardMeta = {
-  steps: [
-    {
-      title: 'Personal Information',
-      formMeta: {
-        columns: 2,
-        fields: [
-          {
-            key: 'name.first',
-            name: 'name.first',
-            label: 'First Name',
-            initialValue: 'Nate',
-            required: true,
-          },
-          {
-            key: 'name.last',
-            name: 'name.last',
-            label: 'Last Name',
-            initialValue: 'Wang',
-            required: true,
-          },
-          {
-            key: 'dob',
-            name: 'dob',
-            label: 'Date of Birth',
-            widget: 'date-picker',
-            viewWidget: 'date-view',
-          },
-          {
-            key: 'noAccountInfo',
-            name: 'noAccountInfo',
-            label: 'No Account Info',
-            widget: 'switch',
-            tooltip: 'Switch on to remove account step',
-          },
-        ],
+const getInitialMeta = () => {
+  const wizardMeta: WizardMeta = {
+    steps: [
+      {
+        key: 'personal',
+        title: 'Personal Information',
+        formMeta: {
+          columns: 2,
+          fields: [
+            {
+              key: 'name.first',
+              name: 'name.first',
+              label: 'First Name',
+              initialValue: 'Nate',
+              required: true,
+            },
+            {
+              key: 'name.last',
+              name: 'name.last',
+              label: 'Last Name',
+              initialValue: 'Wang',
+              required: true,
+            },
+            {
+              key: 'dob',
+              name: 'dob',
+              label: 'Date of Birth',
+              widget: 'date-picker',
+              viewWidget: 'date-view',
+            },
+            {
+              key: 'noAccountInfo',
+              name: 'noAccountInfo',
+              label: 'No Account Info',
+              widget: 'switch',
+              tooltip: 'Switch on to remove account step',
+            },
+          ],
+        },
       },
-    },
-    {
-      title: 'Account Information',
-      formMeta: {
-        columns: 2,
-        fields: [
-          {
-            key: 'email',
-            label: 'Email',
-            clear: 'right',
-            rules: [{ type: 'email', message: 'Invalid email' }],
-          },
-          {
-            key: 'security',
-            label: 'Security Question',
-            widget: 'select',
-            placeholder: 'Select a question...',
-            options: ["What's your pet's name?", 'Your nick name?'],
-          },
-          { key: 'answer', label: 'Security Answer' },
-        ],
+      {
+        key: 'account',
+        title: 'Account Information',
+        formMeta: {
+          columns: 2,
+          fields: [
+            {
+              key: 'email',
+              label: 'Email',
+              clear: 'right',
+              rules: [{ type: 'email', message: 'Invalid email' }],
+            },
+            {
+              key: 'security',
+              label: 'Security Question',
+              widget: 'select',
+              placeholder: 'Select a question...',
+              options: ["What's your pet's name?", 'Your nick name?'],
+            },
+            { key: 'answer', label: 'Security Answer' },
+          ],
+        },
       },
-    },
-    {
-      title: 'Contact Information',
-      formMeta: {
-        columns: 2,
-        fields: [
-          { key: 'address', label: 'Address', colSpan: 2 },
-          { key: 'city', label: 'City' },
-          { key: 'phone', label: 'phone' },
-        ],
+      {
+        key: 'contact',
+        title: 'Contact Information',
+        formMeta: {
+          columns: 2,
+          fields: [
+            { key: 'address', label: 'Address', colSpan: 2 },
+            { key: 'city', label: 'City' },
+            { key: 'phone', label: 'phone' },
+          ],
+        },
       },
-    },
-  ],
-};
+    ],
+  };
+  return wizardMeta;  
+}
 
 const Wizard = () => {
   const [form] = Form.useForm();
@@ -108,7 +114,7 @@ const Wizard = () => {
   }, [form]);
 
   // Clone the meta for dynamic change
-  const newWizardMeta = cloneDeep(wizardMeta);
+  const newWizardMeta = getInitialMeta();
   // In a wizard, every field should be preserved when swtich steps.
   // newWizardMeta.steps.forEach(s => s.formMeta.fields.forEach(f => (f.preserve = true)))
   if (form.getFieldValue('noAccountInfo')) {

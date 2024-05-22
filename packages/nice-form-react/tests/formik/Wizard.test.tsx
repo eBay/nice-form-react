@@ -10,11 +10,10 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import NiceForm from '../../src/NiceForm';
 import config from '../../src/config';
-import formikMuiAdapter from '../../src/adapters/formikMuiAdapter';
+import formikMuiAdapter, { FormikMuiNiceFormField } from '../../src/adapters/formikMuiAdapter';
 import formikAdapter from '../../src/adapters/formikAdapter';
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import cloneDeep from 'lodash/cloneDeep';
 
 config.addAdapter(formikAdapter);
 config.addAdapter(formikMuiAdapter);
@@ -22,72 +21,77 @@ const DateView = ({ value }: { value: Dayjs }) => (value ? value.format('MMM Do 
 
 NiceForm.defineWidget('date-view', DateView, ({ field }) => field);
 
-const wizardMeta = {
-  steps: [
-    {
-      title: 'Personal Information',
-      formMeta: {
-        columns: 2,
-        rowGap: 18,
-        columnGap: 18,
-        fields: [
-          { key: 'name.first', label: 'First Name', initialValue: 'Nate', required: true },
-          { key: 'name.last', label: 'Last Name', initialValue: 'Wang', required: true },
-          {
-            key: 'noAccountInfo',
-            label: 'No Account Info',
-            widget: 'switch',
-            tooltip: 'Switch on to remove account step',
-          },
-        ],
+const getInitialMeta = () => {
+  const wizardMeta = {
+    steps: [
+      {
+        key: 'personal',
+        title: 'Personal Information',
+        formMeta: {
+          columns: 2,
+          rowGap: 18,
+          columnGap: 18,
+          fields: [
+            { key: 'name.first', label: 'First Name', initialValue: 'Nate', required: true },
+            { key: 'name.last', label: 'Last Name', initialValue: 'Wang', required: true },
+            {
+              key: 'noAccountInfo',
+              label: 'No Account Info',
+              widget: 'switch',
+            },
+          ],
+        },
       },
-    },
-    {
-      title: 'Account Information',
-      formMeta: {
-        columns: 2,
-        rowGap: 18,
-        columnGap: 18,
-        fields: [
-          {
-            key: 'email',
-            label: 'Email',
-            clear: 'right',
-            rules: [{ type: 'email', message: 'Invalid email' }],
-          },
-          {
-            key: 'security',
-            label: 'Security Question',
-            widget: 'select',
-            fullWidth: true,
-            placeholder: 'Select a question...',
-            options: ["What's your pet's name?", 'Your nick name?'],
-          },
-          { key: 'answer', label: 'Security Answer' },
-        ],
+      {
+        key:'account',
+        title: 'Account Information',
+        formMeta: {
+          columns: 2,
+          rowGap: 18,
+          columnGap: 18,
+          fields: [
+            {
+              key: 'email',
+              label: 'Email',
+              clear: 'right',
+              rules: [{ type: 'email', message: 'Invalid email' }],
+            },
+            {
+              key: 'security',
+              label: 'Security Question',
+              widget: 'select',
+              fullWidth: true,
+              placeholder: 'Select a question...',
+              options: ["What's your pet's name?", 'Your nick name?'],
+            },
+            { key: 'answer', label: 'Security Answer' },
+          ],
+        },
       },
-    },
-    {
-      title: 'Contact Information',
-      formMeta: {
-        columns: 2,
-        rowGap: 18,
-        columnGap: 18,
-        fields: [
-          { key: 'address', label: 'Address', colSpan: 2 },
-          { key: 'city', label: 'City' },
-          { key: 'phone', label: 'phone' },
-        ],
+      {
+        key: 'contact',
+        title: 'Contact Information',
+        formMeta: {
+          columns: 2,
+          rowGap: 18,
+          columnGap: 18,
+          fields: [
+            { key: 'address', label: 'Address', colSpan: 2 },
+            { key: 'city', label: 'City' },
+            { key: 'phone', label: 'phone' },
+          ],
+        },
       },
-    },
-  ],
-};
+    ],
+  };
+  return wizardMeta;
+}
 
 const Wizard = () => {
   const [currentStep, setCurrentStep] = useState(0);
 
   // Clone the meta for dynamic change
-  const newWizardMeta = cloneDeep(wizardMeta);
+  const newWizardMeta = getInitialMeta();
 
   // In a wizard, every field should be preserved when swtich steps.
   // newWizardMeta.steps.forEach(s => s.formMeta.fields.forEach(f => (f.preserve = true)))
@@ -95,7 +99,7 @@ const Wizard = () => {
   //   newWizardMeta.steps.splice(1, 1);
   // }
   // Generate a general review step
-  const reviewFields: object[] = [];
+  const reviewFields: FormikMuiNiceFormField[] = [] ;
   newWizardMeta.steps.forEach((s: any, i: number) => {
     reviewFields.push(
       {
@@ -120,7 +124,11 @@ const Wizard = () => {
     formMeta: {
       columns: 2,
       rowGap: 18,
-      fields: reviewFields,
+      columnGap: 18, // Add the missing property with value 18
+      fields: reviewFields.map((field) => ({
+        ...field,
+        label: String(field.label),
+      })),
     },
   });
 
@@ -171,6 +179,10 @@ const Wizard = () => {
                     ...newWizardMeta.steps[currentStep].formMeta,
                     viewMode: currentStep === stepsLength - 1,
                     initialValues: form.values,
+                    fields: newWizardMeta.steps[currentStep].formMeta.fields.map((field: any) => ({
+                      ...field,
+                      clear: undefined,
+                    })),
                   }}
                 />
               </div>
