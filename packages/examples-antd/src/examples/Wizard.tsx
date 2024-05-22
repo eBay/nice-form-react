@@ -21,63 +21,64 @@ interface WizardMeta {
   steps: Step[];
 }
 
-const wizardMeta: WizardMeta = {
-  steps: [
-    {
-      title: 'Personal Information',
-      formMeta: {
-        columns: 2,
-        fields: [
-          { key: 'name.first', label: 'First Name', initialValue: 'Nate', required: true },
-          { key: 'name.last', label: 'Last Name', initialValue: 'Wang', required: true },
-          { key: 'dob', label: 'Date of Birth', widget: 'date-picker', viewWidget: 'date-view' },
-          {
-            key: 'noAccountInfo',
-            label: 'No Account Info',
-            widget: 'switch',
-            // dynamic: true,
-            tooltip: 'Switch on to remove account step',
-          },
-        ],
+const getInitialMeta = () => {
+  const wizardMeta: WizardMeta = {
+    steps: [
+      {
+        title: 'Personal Information',
+        formMeta: {
+          columns: 2,
+          fields: [
+            { key: 'name.first', label: 'First Name', initialValue: 'Nate', required: true },
+            { key: 'name.last', label: 'Last Name', initialValue: 'Wang', required: true },
+            { key: 'dob', label: 'Date of Birth', widget: 'date-picker', viewWidget: 'date-view' },
+            {
+              key: 'noAccountInfo',
+              label: 'No Account Info',
+              widget: 'switch',
+              // dynamic: true,
+              tooltip: 'Switch on to remove account step',
+            },
+          ],
+        },
       },
-    },
-    {
-      title: 'Account Information',
-      formMeta: {
-        columns: 2,
-        fields: [
-          {
-            key: 'email',
-            label: 'Email',
-            clear: 'right',
-            rules: [{ type: 'email', message: 'Invalid email' }],
-          },
-          {
-            key: 'security',
-            label: 'Security Question',
-            widget: 'select',
-            placeholder: 'Select a question...',
-            options: ["What's your pet's name?", 'Your nick name?'],
-          },
-          { key: 'answer', label: 'Security Answer' },
-        ],
+      {
+        title: 'Account Information',
+        formMeta: {
+          columns: 2,
+          fields: [
+            {
+              key: 'email',
+              label: 'Email',
+              clear: 'right',
+              rules: [{ type: 'email', message: 'Invalid email' }],
+            },
+            {
+              key: 'security',
+              label: 'Security Question',
+              widget: 'select',
+              placeholder: 'Select a question...',
+              options: ["What's your pet's name?", 'Your nick name?'],
+            },
+            { key: 'answer', label: 'Security Answer' },
+          ],
+        },
       },
-    },
-    {
-      title: 'Contact Information',
-      formMeta: {
-        columns: 2,
-        fields: [
-          { key: 'address', label: 'Address', colSpan: 2 },
-          { key: 'city', label: 'City' },
-          { key: 'phone', label: 'phone' },
-        ],
+      {
+        title: 'Contact Information',
+        formMeta: {
+          columns: 2,
+          fields: [
+            { key: 'address', label: 'Address', colSpan: 2 },
+            { key: 'city', label: 'City' },
+            { key: 'phone', label: 'phone' },
+          ],
+        },
       },
-    },
-  ],
+    ],
+  };
+  return wizardMeta;
 };
-
-const getInitialMeta = () =>  ({...wizardMeta, steps: wizardMeta.steps.map((s: Step) => s)});
 
 export default () => {
   const [form] = Form.useForm();
