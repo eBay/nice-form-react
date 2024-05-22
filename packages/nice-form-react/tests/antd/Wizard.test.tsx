@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { Form, Button, Steps } from 'antd';
+import cloneDeep from 'lodash/cloneDeep';
 import NiceForm from '../../src/NiceForm';
 import config from '../../src/config';
 import { render, screen } from '@testing-library/react';
@@ -107,7 +108,7 @@ const Wizard = () => {
   }, [form]);
 
   // Clone the meta for dynamic change
-  const newWizardMeta = JSON.parse(JSON.stringify(wizardMeta));
+  const newWizardMeta = cloneDeep(wizardMeta);
   // In a wizard, every field should be preserved when swtich steps.
   // newWizardMeta.steps.forEach(s => s.formMeta.fields.forEach(f => (f.preserve = true)))
   if (form.getFieldValue('noAccountInfo')) {

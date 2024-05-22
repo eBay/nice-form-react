@@ -30,6 +30,7 @@ export const isUndefined = (value: any) => typeof value === 'undefined';
 export const get = (obj: Record<string, any>, prop: string | string[]) => {
   const arr = Array.isArray(prop) ? prop : prop.split('.');
   for (let i = 0; i < arr.length; i++) {
+    if (typeof obj !== 'object' || obj === null) return undefined;
     if (!(arr[i] in obj)) return undefined;
     obj = obj[arr[i]];
   }
