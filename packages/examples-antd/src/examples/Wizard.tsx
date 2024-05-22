@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import { Form, Button, Steps } from 'antd';
 import NiceForm from '@ebay/nice-form-react';
+import cloneDeep from 'lodash/cloneDeep';
 import { NiceFormFieldType } from '@ebay/nice-form-react/lib/esm/NiceFormMeta';
 import type { Dayjs } from 'dayjs';
 
@@ -86,7 +87,7 @@ export default () => {
   }, [form]);
 
   // Clone the meta for dynamic change
-  const newWizardMeta = JSON.parse(JSON.stringify(wizardMeta));
+  const newWizardMeta = cloneDeep(wizardMeta);
   if (form.getFieldValue('noAccountInfo')) {
     newWizardMeta.steps.splice(1, 1);
   }

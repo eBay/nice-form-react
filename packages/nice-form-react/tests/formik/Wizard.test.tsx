@@ -14,6 +14,7 @@ import formikMuiAdapter from '../../src/adapters/formikMuiAdapter';
 import formikAdapter from '../../src/adapters/formikAdapter';
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import cloneDeep from 'lodash/cloneDeep';
 
 config.addAdapter(formikAdapter);
 config.addAdapter(formikMuiAdapter);
@@ -86,7 +87,7 @@ const Wizard = () => {
   const [currentStep, setCurrentStep] = useState(0);
 
   // Clone the meta for dynamic change
-  const newWizardMeta = JSON.parse(JSON.stringify(wizardMeta));
+  const newWizardMeta = cloneDeep(wizardMeta);
 
   // In a wizard, every field should be preserved when swtich steps.
   // newWizardMeta.steps.forEach(s => s.formMeta.fields.forEach(f => (f.preserve = true)))
