@@ -13,6 +13,7 @@ import {
   FormikMuiNiceFormMeta,
   FormikMuiNiceFormField,
 } from '@ebay/nice-form-react/adapters/formikMuiAdapter';
+import cloneDeep from 'lodash/cloneDeep';
 const DateView = ({ value }: { value: Dayjs }) => (value ? value.format('MMM Do YYYY') : 'N/A');
 
 NiceForm.defineWidget('date-view', DateView, ({ field }) => field);
@@ -103,7 +104,7 @@ const Wizard = () => {
   const [currentStep, setCurrentStep] = useState(0);
 
   // Clone the meta for dynamic change
-  const newWizardMeta = JSON.parse(JSON.stringify(wizardMeta));
+  const newWizardMeta = cloneDeep(wizardMeta);
 
   // Generate a general review step
   const reviewFields: object[] = [];
