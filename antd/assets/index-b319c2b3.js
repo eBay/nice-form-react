@@ -43657,7 +43657,7 @@ const Basic = () => {
   const options = ['Apple', 'Orange', 'Banana'];
   const meta: AntdNiceFormMeta = {
     columns: 1,
-    // initialValues: { obj: { input: 12 } },
+    initialValues: { obj: { input: 'Nate' } },
     layout: 'horizontal',
     wrapperProps: {
       labelCol: {
@@ -45034,72 +45034,72 @@ const lazyComponent = (importFunction) => {
 const examples = {
   simple: {
     name: "Simple",
-    component: lazyComponent(() => __vitePreload(() => import("./Simple-27ad0df8.js"), true ? [] : void 0)),
+    component: lazyComponent(() => __vitePreload(() => import("./Simple-f8e6640b.js"), true ? [] : void 0)),
     description: "The most simple usage."
   },
   basic: {
     name: "Basic",
-    component: lazyComponent(() => __vitePreload(() => import("./Basic-2957ddc3.js"), true ? [] : void 0)),
+    component: lazyComponent(() => __vitePreload(() => import("./Basic-742fe3e2.js"), true ? [] : void 0)),
     description: "Basic usage."
   },
   "view-mode": {
     name: "View Mode",
-    component: lazyComponent(() => __vitePreload(() => import("./ViewMode-dd282ec6.js"), true ? [] : void 0)),
+    component: lazyComponent(() => __vitePreload(() => import("./ViewMode-a887af12.js"), true ? [] : void 0)),
     description: "FormBuilder could also be used as view mode just for displaying information in form layout. It could be used even without Form."
   },
   "view-edit": {
     name: "View / Edit",
-    component: lazyComponent(() => __vitePreload(() => import("./ViewEdit-a59bb496.js"), true ? ["assets/ViewEdit-a59bb496.js","assets/InfoCircleFilled-c8a0a539.js"] : void 0)),
+    component: lazyComponent(() => __vitePreload(() => import("./ViewEdit-ff89ecda.js"), true ? ["assets/ViewEdit-ff89ecda.js","assets/InfoCircleFilled-46620edd.js"] : void 0)),
     description: "FormBuilder makes it super easy to toggle view/edit mode of a form."
   },
   "dynamic-fields": {
     name: "Dynamic Fields",
-    component: lazyComponent(() => __vitePreload(() => import("./DynamicFields-67048fe8.js"), true ? [] : void 0)),
+    component: lazyComponent(() => __vitePreload(() => import("./DynamicFields-1ab65a65.js"), true ? [] : void 0)),
     description: "You can dynamically add or remove fields according to the user's input. In this example, if choose other, then a new input appears."
   },
   "field-condition": {
     name: "Field Condition",
-    component: lazyComponent(() => __vitePreload(() => import("./FieldCondition-14ce7c7d.js"), true ? [] : void 0)),
+    component: lazyComponent(() => __vitePreload(() => import("./FieldCondition-906c369b.js"), true ? [] : void 0)),
     description: "By condition property, you can control whether to render a field or not. In this example, if choose other, then a new input appears."
   },
   "form-list": {
     name: "Form List",
-    component: lazyComponent(() => __vitePreload(() => import("./FormList-57f693aa.js"), true ? [] : void 0)),
+    component: lazyComponent(() => __vitePreload(() => import("./FormList-e14e4d2f.js"), true ? [] : void 0)),
     description: "Antd form list support."
   },
   "form-list-manual": {
     name: "Manual Form List",
-    component: lazyComponent(() => __vitePreload(() => import("./FormListManual-715088c9.js"), true ? [] : void 0)),
+    component: lazyComponent(() => __vitePreload(() => import("./FormListManual-d92ac09f.js"), true ? [] : void 0)),
     description: "Antd form list support."
   },
   "async-data-source": {
     name: "Async Data Source",
-    component: lazyComponent(() => __vitePreload(() => import("./AsyncDataSource-5b692cd6.js"), true ? [] : void 0)),
+    component: lazyComponent(() => __vitePreload(() => import("./AsyncDataSource-366ca67f.js"), true ? [] : void 0)),
     description: "Some form field widgets may need to load data source if necessary, the sample shows how to do it"
   },
   "multiple-columns": {
     name: "Multiple Columns",
-    component: lazyComponent(() => __vitePreload(() => import("./MultipleColumns-ce4e47be.js"), true ? [] : void 0)),
+    component: lazyComponent(() => __vitePreload(() => import("./MultipleColumns-4ee7ecd5.js"), true ? [] : void 0)),
     description: "It's easy to set multiple columns layout for the form. Note it should be able to divide 24"
   },
   "complex-layout": {
     name: "Complex Layout",
-    component: lazyComponent(() => __vitePreload(() => import("./ComplexLayout-f380b606.js"), true ? [] : void 0)),
+    component: lazyComponent(() => __vitePreload(() => import("./ComplexLayout-b0421d55.js"), true ? [] : void 0)),
     description: "The example shows a complex layout. Similar approach with multiple columns."
   },
   "multiple-sections": {
     name: "Multiple Sections",
-    component: lazyComponent(() => __vitePreload(() => import("./MultipleSections-c8e16546.js"), true ? [] : void 0)),
+    component: lazyComponent(() => __vitePreload(() => import("./MultipleSections-27cb2b01.js"), true ? [] : void 0)),
     description: "Some times you need to group fields into different fieldset, or need more complex layout. You can use multiple form metas in one form."
   },
   "single-field": {
     name: "Single Field",
-    component: lazyComponent(() => __vitePreload(() => import("./SingleField-d552856a.js"), true ? [] : void 0)),
+    component: lazyComponent(() => __vitePreload(() => import("./SingleField-5cdd75fb.js"), true ? [] : void 0)),
     description: "You can use FormBuilder for even a single form field. This example also shows inline layout of the form."
   },
   validation: {
     name: "Validation",
-    component: lazyComponent(() => __vitePreload(() => import("./Validation-f5aefdf4.js"), true ? [] : void 0)),
+    component: lazyComponent(() => __vitePreload(() => import("./Validation-395aca77.js"), true ? [] : void 0)),
     description: /* @__PURE__ */ jsxs("span", { children: [
       "You can use rules property to specify how to validate fields. For more information please go to:",
       " ",
@@ -45116,27 +45116,27 @@ const examples = {
   },
   "form-in-modal": {
     name: "Form in Modal",
-    component: lazyComponent(() => __vitePreload(() => import("./FormInModal-2dc9695f.js"), true ? ["assets/FormInModal-2dc9695f.js","assets/InfoCircleFilled-c8a0a539.js"] : void 0)),
+    component: lazyComponent(() => __vitePreload(() => import("./FormInModal-831d4d16.js"), true ? ["assets/FormInModal-831d4d16.js","assets/InfoCircleFilled-46620edd.js"] : void 0)),
     description: "The example shows how to use form in a dialog to call api and show status in dialog buttons."
   },
   coordinated: {
     name: "Coordinated Controls",
-    component: lazyComponent(() => __vitePreload(() => import("./Coordinated-5da3b0a1.js"), true ? [] : void 0)),
+    component: lazyComponent(() => __vitePreload(() => import("./Coordinated-81934aa0.js"), true ? [] : void 0)),
     description: "You can set field value according to input of another control by use form.setFieldsValue api."
   },
   "custom-component": {
     name: "Custom Component",
-    component: lazyComponent(() => __vitePreload(() => import("./CustomComponent-d2e6824b.js"), true ? [] : void 0)),
+    component: lazyComponent(() => __vitePreload(() => import("./CustomComponent-26645ea4.js"), true ? [] : void 0)),
     description: "It's easy to create your own form field component, ether to get new capabilities or even just for layout."
   },
   mixed: {
     name: "Mixed",
-    component: lazyComponent(() => __vitePreload(() => import("./Mixed-5c2aa12c.js"), true ? [] : void 0)),
+    component: lazyComponent(() => __vitePreload(() => import("./Mixed-8ce39348.js"), true ? [] : void 0)),
     description: "Form builder is designed to not limit original antd form api, so you can use them together."
   },
   wizard: {
     name: "Wizard",
-    component: lazyComponent(() => __vitePreload(() => import("./Wizard-65a02d27.js"), true ? [] : void 0)),
+    component: lazyComponent(() => __vitePreload(() => import("./Wizard-d9401450.js"), true ? [] : void 0)),
     description: "Wizard is an advanced usage of form builder, you can design your own meta structure to support dynamic wizard."
   }
 };

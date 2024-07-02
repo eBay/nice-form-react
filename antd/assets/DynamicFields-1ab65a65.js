@@ -1,4 +1,4 @@
-import { F as Form, N as NiceForm, j as jsxs, a as jsx, B as Button } from "./index-fcca89b2.js";
+import { F as Form, N as NiceForm, j as jsxs, a as jsx, B as Button } from "./index-b319c2b3.js";
 const DynamicFields = () => {
   const [form] = Form.useForm();
   Form.useWatch("favoriteFruit", form);

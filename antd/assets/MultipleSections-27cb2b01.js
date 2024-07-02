@@ -1,4 +1,4 @@
-import { F as Form, r as reactExports, j as jsxs, a as jsx, N as NiceForm, B as Button } from "./index-fcca89b2.js";
+import { F as Form, r as reactExports, j as jsxs, a as jsx, N as NiceForm, B as Button } from "./index-b319c2b3.js";
 const MultipleSections = () => {
   const [form] = Form.useForm();
   const handleFinish = reactExports.useCallback((values) => {
