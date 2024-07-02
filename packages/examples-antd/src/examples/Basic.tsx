@@ -8,7 +8,7 @@ const Basic = () => {
   const options = ['Apple', 'Orange', 'Banana'];
   const meta: AntdNiceFormMeta = {
     columns: 1,
-    // initialValues: { obj: { input: 12 } },
+    initialValues: { obj: { input: 'Nate' } },
     layout: 'horizontal',
     wrapperProps: {
       labelCol: {
