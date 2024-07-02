@@ -8,7 +8,7 @@ const Basic = () => {
   const options = ['Apple', 'Orange', 'Banana'];
   const meta: AntdNiceFormMeta = {
     columns: 1,
-    initialValues: { obj: { input: 12 } },
+    // initialValues: { obj: { input: 12 } },
     layout: 'horizontal',
     wrapperProps: {
       labelCol: {
@@ -34,7 +34,7 @@ const Basic = () => {
         key: 'rating',
         label: 'Rating',
         widget: Rate,
-        initialValue: 2,
+        initialValue: 3,
         condition: () => {
           return NiceForm.getFieldValue('checkbox', meta, form);
         },
@@ -45,12 +45,14 @@ const Basic = () => {
         label: 'Select',
         widget: 'select',
         required: true,
+        initialValue: 'Apple',
         options,
       },
       {
         key: 'checkbox-group',
         label: 'Checkbox Group',
         widget: 'checkbox-group',
+        initialValue: 'Apple',
         options,
       },
       {
@@ -58,11 +60,14 @@ const Basic = () => {
         label: 'Radio Group',
         widget: 'radio-group',
         options,
+        initialValue: 'Orange',
       },
       {
         key: 'radio-button-group',
         label: 'Radio Button Group',
         widget: 'radio-group',
+        initialValue: 'Orange',
+
         widgetProps: {
           optionType: 'button',
           buttonStyle: 'solid',
