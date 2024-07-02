@@ -249,7 +249,7 @@ const antdAdapter: NiceFormAdapter = {
     return newMeta;
   },
 
-  // Todo: why do we need this method? seems can use form.getFieldValue directly?
+  // This ensures you can always get form value before form is connected/renderred
   getFieldValue: (fieldName: NamePath, meta: NiceFormMeta, form: FormInstance) => {
     const isFormConnected = Object.keys(form.getFieldsValue(true)).length > 0;
     if (isFormConnected) return form.getFieldValue(fieldName);
@@ -325,7 +325,7 @@ const antdAdapter: NiceFormAdapter = {
       className: field.className || '',
       style: field.style || ({} as CSSProperties),
       // NOTE: use valuePropName at view mode so that UI is updated if initialValues changed at view mode.
-      valuePropName: field.valuePropName || viewMode ? 'initialValue' : 'value',
+      valuePropName: field.valuePropName || (viewMode ? 'initialValue' : 'value'),
     };
 
     // These std keys are passed to Form.Item directly
