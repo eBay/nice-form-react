@@ -1,4 +1,4 @@
-import { F as Form, r as reactExports, j as jsxs, a as jsx, N as NiceForm, B as Button } from "./index-54cf509a.js";
+import { F as Form, r as reactExports, j as jsxs, a as jsx, N as NiceForm, B as Button } from "./index-fcca89b2.js";
 const MultipleColumns = () => {
   const [form] = Form.useForm();
   const [columns, setColumns] = reactExports.useState(2);

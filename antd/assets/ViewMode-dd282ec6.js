@@ -1,4 +1,4 @@
-import { i as dayjs, a as jsx, j as jsxs, N as NiceForm } from "./index-54cf509a.js";
+import { i as dayjs, a as jsx, j as jsxs, N as NiceForm } from "./index-fcca89b2.js";
 const DateView = ({ value }) => value.format("MMM Do YYYY");
 const ViewMode = () => {
   const personalInfo = {

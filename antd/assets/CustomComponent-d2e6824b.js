@@ -1,4 +1,4 @@
-import { F as Form, r as reactExports, j as jsxs, ad as Row, a as jsx, ae as Col, N as NiceForm, B as Button, af as Select, ag as InputNumber, ah as Input } from "./index-54cf509a.js";
+import { F as Form, r as reactExports, j as jsxs, ad as Row, a as jsx, ae as Col, N as NiceForm, B as Button, af as Select, ag as InputNumber, ah as Input } from "./index-fcca89b2.js";
 const Option = Select.Option;
 const PriceInput = ({ value, onChange }) => value ? /* @__PURE__ */ jsxs(Row, { gutter: 10, children: [
   /* @__PURE__ */ jsx(Col, { span: 16, children: /* @__PURE__ */ jsx(

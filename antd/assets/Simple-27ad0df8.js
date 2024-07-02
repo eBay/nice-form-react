@@ -1,4 +1,4 @@
-import { r as reactExports, j as jsxs, F as Form, a as jsx, N as NiceForm, B as Button } from "./index-54cf509a.js";
+import { r as reactExports, j as jsxs, F as Form, a as jsx, N as NiceForm, B as Button } from "./index-fcca89b2.js";
 const Simple = () => {
   const meta = {
     layout: "horizontal",
