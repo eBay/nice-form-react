@@ -34,7 +34,7 @@ const NiceForm = ({ meta }: { meta: NiceFormMeta }): ReactElement | null => {
       });
 
       // disabled property are on both widgetProps and field
-      widgetProps.disabled = meta.disabled || field.disabled;
+      widgetProps.disabled = typeof field.disabled === 'boolean' ? field.disabled : meta.disabled
       delete convertedField.disabled;
 
       convertedField.widgetProps = widgetProps;
