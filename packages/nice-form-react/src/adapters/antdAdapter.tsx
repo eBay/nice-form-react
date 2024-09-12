@@ -290,7 +290,6 @@ const antdAdapter: NiceFormAdapter = {
     const viewMode = meta.viewMode || field.viewMode;
     const widgetProps: NiceFormWidgetProps = {
       ...field.widgetProps,
-      disabled: field.disabled || meta.disabled,
     };
 
     // Handle full width

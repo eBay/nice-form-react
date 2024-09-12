@@ -31,7 +31,7 @@ const FormField = ({
 
   const FormWidget = field.widget;
   const ViewWidget = field.viewWidget;
-  const widgetProps = { ...field.widgetProps, disabled: field.disabled || meta.disabled };
+  const widgetProps = { ...field.widgetProps };
 
   const { renderField, renderFieldWithoutLabel } = config;
   const content = renderField ? (
