@@ -1,7 +1,7 @@
 {
   "name": "@ebay/nice-form-react",
   "private": false,
-  "version": "2.0.2",
+  "version": "2.0.3",
   "license": "MIT",
   "repository": "https://github.com/eBay/nice-form-react",
   "main": "./lib/cjs/index.js",
