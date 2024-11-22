@@ -32,9 +32,11 @@ export default () => {
   const getMeta = () => {
     const meta: AntdNiceFormMeta = {
       columns: 2,
+      viewMode,
+      initialValues: personalInfo,
       fields: [
-        { key: 'firstName', label: ' Name', required: true },
-        { key: 'lastName', label: 'Last Name', required: true },
+        { key: 'name.first', label: 'First Name', required: true },
+        { key: 'name.last', label: 'Last Name', required: true },
         {
           key: 'gender',
           label: 'Gender',
