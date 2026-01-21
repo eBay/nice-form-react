@@ -156,6 +156,73 @@ const antdAdapter: NiceFormAdapter = {
               { add, remove, move }: FormListOperation,
               { errors }: { errors: any[] },
             ): ReactNode => {
+              // Check for multiple fields support
+              const listItemMeta = field.listItemMeta as any || {};
+              const multipleFields = listItemMeta.fields as NiceFormField[] | undefined;
+              
+              if (multipleFields && Array.isArray(multipleFields) && multipleFields.length > 0) {
+                // Multiple fields per list item
+                const allItemFields: any[] = [];
+                fields.forEach((f, i) => {
+                  multipleFields.forEach((itemField, fieldIndex) => {
+                    allItemFields.push({
+                      ...itemField,
+                      key: `${f.key}-${itemField.key}`,
+                      name: [f.name, itemField.key],
+                      style: { marginBottom: '10px', ...(itemField.style as any || {}) },
+                      widgetProps: {
+                        ...(itemField.widgetProps || {}),
+                        placeholder: (itemField as any).placeholder || itemField.widgetProps?.placeholder,
+                      },
+                      ...(fieldIndex === multipleFields.length - 1 ? {
+                        extraNode: fields.length > 1 ? (
+                          <span
+                            style={{
+                              position: 'absolute',
+                              right: '-24px',
+                              top: '9px',
+                              color: 'red',
+                              width: '16px',
+                              height: '16px',
+                              borderRadius: '50%',
+                              border: '1px solid red',
+                              textAlign: 'center',
+                              cursor: 'pointer',
+                              lineHeight: '12px',
+                            }}
+                            className="dynamic-delete-button"
+                            onClick={() => remove(f.name)}
+                          >-</span>
+                        ) : null,
+                      } : {}),
+                    });
+                  });
+                });
+
+                const getDefaultValue = () => {
+                  const obj: any = {};
+                  multipleFields.forEach((f) => { obj[f.key] = f.initialValue ?? ''; });
+                  return obj;
+                };
+
+                return (
+                  <>
+                    {field.hasOwnProperty('listTop') ? field.listTop : null}
+                    <NiceForm meta={{ 
+                      columns: listItemMeta.columns || multipleFields.length, 
+                      columnGap: listItemMeta.columnGap ?? 16,
+                      fields: allItemFields 
+                    }} />
+                    {field.hasOwnProperty('listBottom') ? field.listBottom : (
+                      <Button type="link" onClick={() => add(getDefaultValue())} {...(field.addItemButtonProps || {})}>
+                        {field.addItemButtonLabel || '+ Add Item'}
+                      </Button>
+                    )}
+                  </>
+                );
+              }
+
+              // Original: Single field per list item
               const meta = {
                 fields: fields.map((f, i) => ({
                   ...f,
